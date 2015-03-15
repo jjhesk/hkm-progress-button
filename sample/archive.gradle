@@ -1,0 +1,59 @@
+import java.text.SimpleDateFormat
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 21
+        applicationId project.PACKAGE_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
+    }
+
+    signingConfigs {
+        release
+    }
+
+    buildTypes {
+        debug {
+        }
+
+        release {
+            signingConfig project.hasProperty('storeFile') ? signingConfigs.release : signingConfigs.debug
+        }
+    }
+
+    applicationVariants.all { variant ->
+        def oldFile = variant.outputFile
+        def newPath = "${variant.name}" + "_" + "${variant.versionName}" + "_" + "${variant.versionCode}" + "_" + getDate() + ".apk";
+        variant.outputFile = new File(oldFile.parentFile, newPath)
+    }
+}
+
+
+def getDate() {
+    def formatter = new SimpleDateFormat('dd-MM-yyyy');
+    def date = new Date();
+    return formatter.format(date);
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':library')
+//    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.2-SNAPSHOT@aar'
+}
+
+if (project.hasProperty('storeFile')) {
+    android.signingConfigs.release.storeFile = file(storeFile)
+}
+if (project.hasProperty('keyAlias')) {
+    android.signingConfigs.release.keyAlias = keyAlias
+}
+if (project.hasProperty('storePassword')) {
+    android.signingConfigs.release.storePassword = storePassword
+}
+if (project.hasProperty('keyPassword')) {
+    android.signingConfigs.release.keyPassword = keyPassword
+}
