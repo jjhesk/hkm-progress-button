@@ -1,3 +1,8 @@
+
+
+apply plugin: 'com.android.library'
+apply plugin: 'android-maven'
+
 buildscript {
     repositories {
         jcenter()
@@ -5,12 +10,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
     }
-}
-
-apply plugin: 'com.android.library'
-
-repositories {
-    jcenter()
 }
 
 android {
@@ -29,5 +28,3 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.3'
 }
 
-// Used to push in maven
-//apply from: '../maven_push.gradle'
