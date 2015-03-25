@@ -8,7 +8,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 
-import com.dd.processbutton.R;
 
 public abstract class ProcessButton extends FlatButton {
 
@@ -17,6 +16,7 @@ public abstract class ProcessButton extends FlatButton {
     private int mMinProgress;
 
     private GradientDrawable mProgressDrawable;
+    private GradientDrawable mDisabledDrawable;
     private GradientDrawable mCompleteDrawable;
     private GradientDrawable mErrorDrawable;
 
@@ -52,37 +52,37 @@ public abstract class ProcessButton extends FlatButton {
         mErrorDrawable = (GradientDrawable) getDrawable(R.drawable.rect_error).mutate();
         mErrorDrawable.setCornerRadius(getCornerRadius());
 
+
+        mDisabledDrawable = (GradientDrawable) getDrawable(R.drawable.rect_disable).mutate();
+        mDisabledDrawable.setCornerRadius(getCornerRadius());
+
+
         if (attrs != null) {
             initAttributes(context, attrs);
         }
     }
 
-    private void initAttributes(Context context, AttributeSet attributeSet) {
-        TypedArray attr = getTypedArray(context, attributeSet, R.styleable.ProcessButton);
+    private int getColorXML(int colorResId, int styleIdColor) {
+        int default_color = getColor(colorResId);
+        return xmlData.getColor(styleIdColor, default_color);
+    }
 
-        if (attr == null) {
+    private TypedArray xmlData;
+
+    private void initAttributes(Context context, AttributeSet attributeSet) {
+        xmlData = getTypedArray(context, attributeSet, R.styleable.ProcessButton);
+        if (xmlData == null) {
             return;
         }
-
         try {
-            mLoadingText = attr.getString(R.styleable.ProcessButton_pb_textProgress);
-            mCompleteText = attr.getString(R.styleable.ProcessButton_pb_textComplete);
-            mErrorText = attr.getString(R.styleable.ProcessButton_pb_textError);
-
-            int purple = getColor(R.color.purple_progress);
-            int colorProgress = attr.getColor(R.styleable.ProcessButton_pb_colorProgress, purple);
-            mProgressDrawable.setColor(colorProgress);
-
-            int green = getColor(R.color.green_complete);
-            int colorComplete = attr.getColor(R.styleable.ProcessButton_pb_colorComplete, green);
-            mCompleteDrawable.setColor(colorComplete);
-
-            int red = getColor(R.color.red_error);
-            int colorError = attr.getColor(R.styleable.ProcessButton_pb_colorError, red);
-            mErrorDrawable.setColor(colorError);
-
+            mLoadingText = xmlData.getString(R.styleable.ProcessButton_pb_textProgress);
+            mCompleteText = xmlData.getString(R.styleable.ProcessButton_pb_textComplete);
+            mErrorText = xmlData.getString(R.styleable.ProcessButton_pb_textError);
+            mProgressDrawable.setColor(getColorXML(R.color.purple_progress, R.styleable.ProcessButton_pb_colorProgress));
+            mCompleteDrawable.setColor(getColorXML(R.color.green_complete, R.styleable.ProcessButton_pb_colorComplete));
+            mErrorDrawable.setColor(getColorXML(R.color.red_error, R.styleable.ProcessButton_pb_colorError));
         } finally {
-            attr.recycle();
+            xmlData.recycle();
         }
     }
 
@@ -93,7 +93,7 @@ public abstract class ProcessButton extends FlatButton {
             onNormalState();
         } else if (mProgress == mMaxProgress) {
             onCompleteState();
-        } else if (mProgress < mMinProgress){
+        } else if (mProgress < mMinProgress) {
             onErrorState();
         } else {
             onProgress();
@@ -102,29 +102,53 @@ public abstract class ProcessButton extends FlatButton {
         invalidate();
     }
 
+    /*  protected void onDisable() {
+          setBackgroundCompat(getDisableDrawable());
+      }
+
+      protected void onEnable() {
+          setProgress(mProgress);
+      }
+
+      @Override
+      public void setEnabled(boolean enabled) {
+
+          if (enabled) {
+              onEnable();
+          } else {
+              onDisable();
+          }
+          super.setEnabled(enabled);
+      }
+
+      @Override
+      public boolean isEnabled() {
+          return super.isEnabled();
+      }
+      */
     protected void onErrorState() {
-        if(getErrorText() != null) {
+        if (getErrorText() != null) {
             setText(getErrorText());
         }
         setBackgroundCompat(getErrorDrawable());
     }
 
     protected void onProgress() {
-        if(getLoadingText() != null) {
+        if (getLoadingText() != null) {
             setText(getLoadingText());
         }
         setBackgroundCompat(getNormalDrawable());
     }
 
     protected void onCompleteState() {
-        if(getCompleteText() != null) {
+        if (getCompleteText() != null) {
             setText(getCompleteText());
         }
         setBackgroundCompat(getCompleteDrawable());
     }
 
     protected void onNormalState() {
-        if(getNormalText() != null) {
+        if (getNormalText() != null) {
             setText(getNormalText());
         }
         setBackgroundCompat(getNormalDrawable());
@@ -133,10 +157,9 @@ public abstract class ProcessButton extends FlatButton {
     @Override
     protected void onDraw(Canvas canvas) {
         // progress
-        if(mProgress > mMinProgress && mProgress < mMaxProgress) {
+        if (mProgress > mMinProgress && mProgress < mMaxProgress) {
             drawProgress(canvas);
         }
-
         super.onDraw(canvas);
     }
 
@@ -169,6 +192,7 @@ public abstract class ProcessButton extends FlatButton {
     public CharSequence getCompleteText() {
         return mCompleteText;
     }
+
 
     public void setProgressDrawable(GradientDrawable progressDrawable) {
         mProgressDrawable = progressDrawable;

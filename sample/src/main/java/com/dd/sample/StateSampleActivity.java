@@ -1,12 +1,12 @@
 package com.dd.sample;
 
-import com.hkm.ui.processbutton.iml.ActionProcessButton;
-import com.hkm.ui.processbutton.iml.GenerateProcessButton;
-import com.hkm.ui.processbutton.iml.SubmitProcessButton;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.hkm.ui.processbutton.iml.ActionProcessButton;
+import com.hkm.ui.processbutton.iml.GenerateProcessButton;
+import com.hkm.ui.processbutton.iml.SubmitProcessButton;
 
 
 public class StateSampleActivity extends Activity implements View.OnClickListener {
@@ -28,11 +28,19 @@ public class StateSampleActivity extends Activity implements View.OnClickListene
         findViewById(R.id.btnProgressError).setOnClickListener(this);
         findViewById(R.id.btnProgressComplete).setOnClickListener(this);
         findViewById(R.id.btnProgressNormal).setOnClickListener(this);
+        findViewById(R.id.btnDisable).setOnClickListener(this);
+        findViewById(R.id.btnEnable).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnDisable:
+                mBtnAction.setEnabled(false);
+                break;
+            case R.id.btnEnable:
+                mBtnAction.setEnabled(true);
+                break;
             case R.id.btnProgressLoading:
                 mBtnAction.setProgress(50);
                 mBtnSubmit.setProgress(50);
