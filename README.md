@@ -16,11 +16,10 @@ Android Buttons With Built-in Progress Meters.
 
 ### Integration
 
-The lib is available on Maven Central, you can find it with [Gradle, please]
-
+The lib is available on maven jitpack, so you will need to add a class path for custom repos
 ```
 	dependencies {
-	        compile 'com.github.jjhesk:hkm-progress-button:v0.1'
+	        compile 'com.github.jjhesk:hkm-progress-button:[the lastest version name or code]'
 	}
 ```
 
