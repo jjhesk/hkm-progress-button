@@ -73,8 +73,8 @@ public class FlatButton extends Button {
         return (GradientDrawable) drawableNormal.getDrawable(n).mutate();
     }
 
-    private GradientDrawable getLayer(int n, LayerDrawable drawableNormal) {
-        return (GradientDrawable) drawableNormal.getDrawable(n).mutate();
+    private GradientDrawable getLayer(int n, LayerDrawable j) {
+        return (GradientDrawable) j.getDrawable(n).mutate();
     }
 
     public void setDisableDrawable(GradientDrawable disableDrawable) {
@@ -93,13 +93,14 @@ public class FlatButton extends Button {
     }
 
 
-    private Drawable createDisabledDrawable() {
-        GradientDrawable drawableTop = getLayer(0, R.drawable.rect_disable);
-        drawableTop.setCornerRadius(getCornerRadius());
-        GradientDrawable drawablePressed = (GradientDrawable) getDrawable(R.drawable.rect_disable).mutate();
-        drawablePressed.setCornerRadius(getCornerRadius());
-        drawablePressed.setColor(getColorXML(R.color.blue_pressed, R.styleable.FlatButton_pb_colorDisabled));
-        return drawablePressed;
+    private LayerDrawable createDisabledDrawable() {
+        LayerDrawable normal = (LayerDrawable) getDrawable(R.drawable.rect_disable).mutate();
+        GradientDrawable layer1 = getLayer(1, normal);
+        layer1.setCornerRadius(getCornerRadius());
+        GradientDrawable layer0 = getLayer(0, normal);
+        layer0.setCornerRadius(getCornerRadius());
+        layer0.setColor(getColorXML(R.color.grey_disabled, R.styleable.FlatButton_pb_colorDisabled));
+        return normal;
     }
 
     private Drawable createPressedDrawable() {

@@ -6,6 +6,8 @@
             <solid android:color="@color/blue_normal" />
         </shape>
     </item>
+
+
     <item android:bottom="@dimen/layer_padding">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/corner_radius" />

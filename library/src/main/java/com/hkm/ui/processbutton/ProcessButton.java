@@ -16,7 +16,6 @@ public abstract class ProcessButton extends FlatButton {
     private int mMinProgress;
 
     private GradientDrawable mProgressDrawable;
-    private GradientDrawable mDisabledDrawable;
     private GradientDrawable mCompleteDrawable;
     private GradientDrawable mErrorDrawable;
 
@@ -53,8 +52,7 @@ public abstract class ProcessButton extends FlatButton {
         mErrorDrawable.setCornerRadius(getCornerRadius());
 
 
-        mDisabledDrawable = (GradientDrawable) getDrawable(R.drawable.rect_disable).mutate();
-        mDisabledDrawable.setCornerRadius(getCornerRadius());
+
 
 
         if (attrs != null) {
