@@ -49,9 +49,7 @@ public class ActionProcessButton extends ProcessButton {
 
     private void init(Context context) {
         Resources res = context.getResources();
-
         mMode = Mode.ENDLESS;
-
         mColor1 = res.getColor(R.color.holo_blue_bright);
         mColor2 = res.getColor(R.color.holo_green_light);
         mColor3 = res.getColor(R.color.holo_orange_light);
