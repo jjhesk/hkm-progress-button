@@ -1,9 +1,5 @@
 package com.hkm.ui.processbutton.iml;
 
-import com.hkm.ui.processbutton.ProcessButton;
-import com.hkm.ui.processbutton.R;
-
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -16,6 +12,9 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+
+import com.hkm.ui.processbutton.ProcessButton;
+import com.hkm.ui.processbutton.R;
 
 
 public class ActionProcessButton extends ProcessButton {
@@ -63,16 +62,10 @@ public class ActionProcessButton extends ProcessButton {
         mMode = mode;
     }
 
-    public void setColorScheme(int color1, int color2, int color3, int color4) {
-        mColor1 = color1;
-        mColor2 = color2;
-        mColor3 = color3;
-        mColor4 = color4;
-    }
 
     @Override
     public void drawProgress(Canvas canvas) {
-        if(getBackground() != getNormalDrawable()) {
+        if (getBackground() != getNormalDrawable()) {
             setBackgroundDrawable(getNormalDrawable());
         }
 
@@ -174,17 +167,18 @@ public class ActionProcessButton extends ProcessButton {
          * @param color3 Integer representation of a color.
          * @param color4 Integer representation of a color.
          */
-        void setColorScheme(int color1, int color2, int color3, int color4) {
+        public void setColorScheme(int color1, int color2, int color3, int color4) {
             mColor1 = color1;
             mColor2 = color2;
             mColor3 = color3;
             mColor4 = color4;
         }
 
+
         /**
          * Start showing the progress animation.
          */
-        void start() {
+        public void start() {
             if (!mRunning) {
                 mTriggerPercentage = 0;
                 mStartTime = AnimationUtils.currentAnimationTimeMillis();
@@ -193,7 +187,7 @@ public class ActionProcessButton extends ProcessButton {
             }
         }
 
-        void draw(Canvas canvas) {
+        public void draw(Canvas canvas) {
             final int width = mBounds.width();
             final int height = mBounds.height();
             final int cx = width / 2;
@@ -306,10 +300,10 @@ public class ActionProcessButton extends ProcessButton {
          * Draws a circle centered in the view.
          *
          * @param canvas the canvas to draw on
-         * @param cx the center x coordinate
-         * @param cy the center y coordinate
-         * @param color the color to draw
-         * @param pct the percentage of the view that the circle should cover
+         * @param cx     the center x coordinate
+         * @param cy     the center y coordinate
+         * @param color  the color to draw
+         * @param pct    the percentage of the view that the circle should cover
          */
         private void drawCircle(Canvas canvas, float cx, float cy, int color, float pct) {
             mPaint.setColor(color);
@@ -324,7 +318,7 @@ public class ActionProcessButton extends ProcessButton {
         /**
          * Set the drawing bounds of this SwipeProgressBar.
          */
-        void setBounds(int left, int top, int right, int bottom) {
+        public void setBounds(int left, int top, int right, int bottom) {
             mBounds.left = left;
             mBounds.top = top;
             mBounds.right = right;
