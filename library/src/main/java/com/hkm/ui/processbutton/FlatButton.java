@@ -92,6 +92,32 @@ public class FlatButton extends Button {
         return drawableNormal;
     }
 
+    private int getColorResource(int color) {
+        return getResources().getColor(color);
+
+    }
+
+    public LayerDrawable creatNormalDrawable(int one_color) {
+        LayerDrawable drawableNormal = (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
+        GradientDrawable drawableTop = getLayer(0, drawableNormal);
+        drawableTop.setCornerRadius(getCornerRadius());
+        drawableTop.setColor(getColorResource(one_color));
+        GradientDrawable drawableBottom = getLayer(1, drawableNormal);
+        drawableBottom.setCornerRadius(getCornerRadius());
+        drawableBottom.setColor(getColorResource(one_color));
+        return drawableNormal;
+    }
+
+    public LayerDrawable creatNormalDrawable(int top_color_id, int bottom_color_id) {
+        LayerDrawable drawableNormal = (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
+        GradientDrawable drawableTop = getLayer(0, drawableNormal);
+        drawableTop.setCornerRadius(getCornerRadius());
+        drawableTop.setColor(getColorResource(top_color_id));
+        GradientDrawable drawableBottom = getLayer(1, drawableNormal);
+        drawableBottom.setCornerRadius(getCornerRadius());
+        drawableBottom.setColor(getColorResource(bottom_color_id));
+        return drawableNormal;
+    }
 
     private LayerDrawable createDisabledDrawable() {
         LayerDrawable normal = (LayerDrawable) getDrawable(R.drawable.rect_disable).mutate();

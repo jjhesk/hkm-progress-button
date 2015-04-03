@@ -3,7 +3,9 @@ package com.hkm.ui.processbutton;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -22,6 +24,11 @@ public abstract class ProcessButton extends FlatButton {
     private CharSequence mLoadingText;
     private CharSequence mCompleteText;
     private CharSequence mErrorText;
+    public static final int
+            NORMAL = 0,
+            FULL = 100,
+            FULLBUTTON = -8,
+            ERROR = -1;
 
     public ProcessButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -50,9 +57,6 @@ public abstract class ProcessButton extends FlatButton {
 
         mErrorDrawable = (GradientDrawable) getDrawable(R.drawable.rect_error).mutate();
         mErrorDrawable.setCornerRadius(getCornerRadius());
-
-
-
 
 
         if (attrs != null) {
@@ -91,6 +95,8 @@ public abstract class ProcessButton extends FlatButton {
             onNormalState();
         } else if (mProgress == mMaxProgress) {
             onCompleteState();
+        } else if (mProgress == FULLBUTTON) {
+            onCompleteStateButton();
         } else if (mProgress < mMinProgress) {
             onErrorState();
         } else {
@@ -136,6 +142,30 @@ public abstract class ProcessButton extends FlatButton {
             setText(getLoadingText());
         }
         setBackgroundCompat(getNormalDrawable());
+    }
+
+    private OnClickListener list;
+    private LayerDrawable complete_layerdrawable;
+
+    public ProcessButton setOnClickCompleteState(OnClickListener listener) {
+        list = listener;
+        return this;
+    }
+
+    public ProcessButton setOnCompleteColorButton(int top, int bottom) {
+        complete_layerdrawable = creatNormalDrawable(top, bottom);
+        return this;
+    }
+
+    protected void onCompleteStateButton() {
+        if (list != null) {
+            setOnClickListener(list);
+            setEnabled(true);
+        }
+        if (complete_layerdrawable != null) {
+            setBackgroundCompat(complete_layerdrawable);
+        }
+        setText(getCompleteText());
     }
 
     protected void onCompleteState() {
@@ -200,6 +230,9 @@ public abstract class ProcessButton extends FlatButton {
         mCompleteDrawable = completeDrawable;
     }
 
+    /* public void setCompleteDrawable(Drawable completeDrawable) {
+         mCompleteDrawabled = completeDrawable;
+     }*/
     public void setLoadingText(CharSequence loadingText) {
         mLoadingText = loadingText;
     }
