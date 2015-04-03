@@ -15,6 +15,28 @@ Android Buttons With Built-in Progress Meters.
 - [Screenshots]
 - [User Guide]
 
+## Code Sample
+```java
+
+        add_bag = (ActionProcessButton) findViewById(R.id.add_to_bag);
+        
+        add_bag.setCompleteText(act.getResources().getString(R.string.button_3));
+        
+        add_bag.setText(act.getResources().getString(R.string.button_1));
+        // set the progress mode on endless
+        add_bag.setMode(ActionProcessButton.Mode.ENDLESS);
+        // add success state color scheme as a button and not a sign
+        add_bag.setOnCompleteColorButton(R.color.green_800, R.color.green_900);
+        // add listener for click on the button for success state
+        add_bag.setOnClickCompleteState(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent h = new Intent(context, CartWebViewStyleTopBar.class);
+                context.startActivity(h);
+            }
+        });
+        
+```
 ### Integration
 
 The lib is available on maven jitpack, so you will need to add a class path for custom repos
