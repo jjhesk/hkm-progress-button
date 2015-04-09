@@ -1,0 +1,134 @@
+// ./gradlew clean build generateRelease
+apply plugin: 'maven'
+
+def groupId = project.PUBLISH_GROUP_ID
+def artifactId = project.PUBLISH_ARTIFACT_ID
+def version = project.PUBLISH_VERSION
+
+configurations {
+    optional
+    compile.extendsFrom optional
+}
+
+def localReleaseDest = "${buildDir}/release/${version}"
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+
+
+def bintrayUser
+if(hasProperty('bintray.user')) {
+    bintrayUser = property('bintray.user')
+}
+def bintrayKey
+if(hasProperty('bintray.apikey')) {
+    bintrayKey = property('bintray.apikey')
+}
+
+
+uploadArchives {
+    repositories.mavenDeployer {
+        pom.groupId = groupId
+        pom.artifactId = artifactId
+        pom.version = version
+
+        pom.withXml {
+            asNode().dependencies.dependency.findAll { xmlDep ->
+                // mark optional dependencies
+                if (project.configurations.optional.allDependencies.findAll { dep ->
+                    xmlDep.groupId.text() == dep.group && xmlDep.artifactId.text() == dep.name
+                }) {
+                    def xmlOptional = xmlDep.optional[0];
+                    if (!xmlOptional) {
+                        xmlOptional = xmlDep.appendNode('optional')
+                    }
+                    xmlOptional.value = 'true';
+                }
+            }
+        }
+
+        pom.project {
+            name project.POM_DESCRIPTION
+            packaging project.POM_PACKAGING
+            description project.POM_DESCRIPTION
+            url project.POM_URL
+
+            scm {
+                url project.POM_SCM_CONNECTION
+                connection project.POM_SCM_CONNECTION
+                developerConnection project.POM_SCM_CONNECTION
+            }
+
+            licenses {
+                license {
+                    name project.POM_LICENCE_NAME
+                }
+            }
+
+            developers {
+                developer {
+                    id project.POM_DEVELOPER_ID
+                    name project.POM_DEVELOPER_NAME
+                    email project.POM_EMAIL
+                }
+            }
+        }
+
+        // Add other pom properties here if you want (developer details / licenses)
+        repository(url: "file://${localReleaseDest}")
+
+        repository(id: project.POM_ARTIFACT_ID, url: project.JCENTER_API_URL) {
+            authentication(
+                    userName: bintrayUser,
+                    password: bintrayKey
+            )
+        }
+
+    }
+}
+
+uploadArchives.doFirst {
+    if (!bintrayUser) {
+        throw new GradleException('Please set bintray.user in ~/.gradle/gradle.properties')
+    }
+    if (!bintrayKey) {
+        throw new GradleException('Please set bintray.apikey in ~/.gradle/gradle.properties')
+    }
+}
+
+
+uploadArchives.doLast {
+    println "**** Release $version successfully uploaded. Go to https://bintray.com/jfly/maven/fskube/ to publish. ****"
+}
+task zipRelease(type: Zip) {
+    from localReleaseDest
+    destinationDir buildDir
+    archiveName "release-${version}.zip"
+}
+
+task generateRelease << {
+    println "Release ${version} can be found at ${localReleaseDest}/"
+    println "Release ${version} zipped can be found ${buildDir}/release-${version}.zip"
+}
+
+generateRelease.dependsOn(uploadArchives)
+generateRelease.dependsOn(zipRelease)
+
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}

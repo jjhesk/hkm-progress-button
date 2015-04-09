@@ -1,16 +1,23 @@
-
-
 apply plugin: 'com.android.library'
-apply plugin: 'android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
+apply plugin: 'bintray-release'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.hkm'
+    PUBLISH_ARTIFACT_ID = 'hkm-progress-button'
+    PUBLISH_VERSION = project.VERSION_NAME
+}
 
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.0'
+        classpath 'com.android.tools.build:gradle:1.1.2'
     }
 }
+
 
 android {
     compileSdkVersion 21
@@ -27,4 +34,7 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:21.0.3'
 }
+
+apply from: 'bintrayrelease.gradle'
+
 
