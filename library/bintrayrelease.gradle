@@ -1,16 +1,18 @@
 apply plugin: 'bintray-release'
 
+
 publish {
+    userOrg = project.POM_DEVELOPER_ID
     groupId = project.PUBLISH_GROUP_ID
     artifactId = project.POM_ARTIFACT_ID
-    version = project.ext.PUBLISH_VERSION
+    version = project.VERSION_NAME
     uploadName = project.POM_ARTIFACT_ID
     description = project.POM_DESCRIPTION
     website = project.POM_URL
     autoPublish = true
     dryRun = false
+    licences=[project.POM_LICENCE_NAME]
 }
-
 
 if (hasProperty('bintray.user')) {
     publish.bintrayUser = property('bintray.user')
@@ -19,4 +21,3 @@ if (hasProperty('bintray.user')) {
 if (hasProperty('bintray.apikey')) {
     publish.bintrayKey = property('bintray.apikey')
 }
-

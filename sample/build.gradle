@@ -1,21 +1,6 @@
 import java.text.SimpleDateFormat
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.2'
-    }
-}
 apply plugin: 'com.android.application'
-
-repositories {
-    jcenter()
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
-}
 
 android {
     compileSdkVersion 21
@@ -32,5 +17,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':library')
+    //compile project(':library')
+    compile 'com.hkm:hkmprocessbuttons:1.0.61@aar'
 }

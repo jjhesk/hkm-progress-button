@@ -9,15 +9,6 @@ ext {
     PUBLISH_VERSION = project.VERSION_NAME
 }
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.2'
-    }
-}
-
 
 android {
     compileSdkVersion 21
@@ -28,6 +19,9 @@ android {
         targetSdkVersion 21
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 
