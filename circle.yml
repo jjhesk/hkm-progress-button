@@ -1,28 +1,18 @@
-general:
-    artifacts:
-        -/home/ubuntu/hkm-progress-button/build/outputs/reports/librarytst/connected
-
 machine:
-	environment:
-		ANDROID_HOME: /home/ubuntu/android
-    java:
-        version: oraclejdk6
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    GRADLE_OPTS: -Xmx512m
 
 dependencies:
-	cache_directories:
-		- ~/.android
-        - ~/android
-    override:
-	    - (source scripts/environmentSetup.sh && getAndroidSDK)
+  post:
+    - echo y | android update sdk --no-ui --all --filter "platform-tools,build-tools-21.0.2,build-tools-20.0.0,android-21,sys-img-armeabi-v7a-android-21,android-20,sys-img-armeabi-v7a-android-wear-20,android-19,sys-img-armeabi-v7a-android-19,android-18,sys-img-armeabi-v7a-android-18,android-17,sys-img-armeabi-v7a-android-17,android-16,sys-img-armeabi-v7a-android-16,android-15,sys-img-armeabi-v7a-android-15,android-10,extra-android-support,extra-google-google_play_services,extra-google-m2repository,extra-android-m2repository"
+    -  echo n | android create avd -n testing -f -t android-18
 
 test:
-    pre:
-	    - $ANDROID_HOME/tools/emulator -avd testAVD -no-skin -no-audio -no-window:
-			background: true
-		- (./gradlew assembleDebug):
-			timeout: 1200
-		- (./gradlew assembleDebugTest):
-			timeout: 1200
-		- (source scripts/environmentSetup.sh && waitForAVD)
-    override:
-		- (./gradlew connectedAndroidTest)
+  override:
+    - $ANDROID_HOME/tools/emulator -avd testing -no-window -no-boot-anim -no-audio:
+        background: true
+        parallel: true
+    - ./gradlew assembleDebug
+    - bin/android-wait-for-emulator
+    - bin/run-tests test.namespace

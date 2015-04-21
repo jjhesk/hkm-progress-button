@@ -74,8 +74,8 @@
       <file leaf-file-name="circle.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/circle.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17289074" vertical-offset="0" max-vertical-offset="825">
-              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.5186722" vertical-offset="0" max-vertical-offset="775">
+              <caret line="7" column="505" selection-start-line="7" selection-start-column="505" selection-end-line="7" selection-end-column="505" />
               <folding />
             </state>
           </provider>
@@ -2242,8 +2242,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="104" />
-    <option name="y" value="169" />
+    <option name="x" value="109" />
+    <option name="y" value="175" />
     <option name="width" value="1481" />
     <option name="height" value="867" />
   </component>
@@ -2553,7 +2553,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="104" y="169" width="1481" height="867" extended-state="0" />
+    <frame x="109" y="175" width="1481" height="867" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3120,8 +3120,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/circle.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17289074" vertical-offset="0" max-vertical-offset="825">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.5186722" vertical-offset="0" max-vertical-offset="775">
+          <caret line="7" column="505" selection-start-line="7" selection-start-column="505" selection-end-line="7" selection-end-column="505" />
           <folding />
         </state>
       </provider>
