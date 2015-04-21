@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="hkmprocessbuttons-1.0.61">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/sample/build/intermediates/exploded-aar/com.hkm/hkmprocessbuttons/1.0.61/res" />
+      <root url="jar://$PROJECT_DIR$/sample/build/intermediates/exploded-aar/com.hkm/hkmprocessbuttons/1.0.61/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

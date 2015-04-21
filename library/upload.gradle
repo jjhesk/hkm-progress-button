@@ -86,7 +86,7 @@ uploadArchives {
                 }
             }
         }
-
+        pom.writeTo("pom.xml")
         // Add other pom properties here if you want (developer details / licenses)
         repository(url: "file://${localReleaseDest}")
 
@@ -131,4 +131,35 @@ generateRelease.dependsOn(zipRelease)
 artifacts {
     archives androidSourcesJar
     archives androidJavadocsJar
+}
+
+task createPom << {
+    pom {
+        project {
+            name project.POM_DESCRIPTION
+            packaging project.POM_PACKAGING
+            description project.POM_DESCRIPTION
+            url project.POM_URL
+
+            scm {
+                url project.POM_SCM_CONNECTION
+                connection project.POM_SCM_CONNECTION
+                developerConnection project.POM_SCM_CONNECTION
+            }
+
+            licenses {
+                license {
+                    name project.POM_LICENCE_NAME
+                }
+            }
+
+            developers {
+                developer {
+                    id project.POM_DEVELOPER_ID
+                    name project.POM_DEVELOPER_NAME
+                    email project.POM_EMAIL
+                }
+            }
+        }
+    }.writeTo("pom.xml")
 }
