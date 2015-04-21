@@ -16,3 +16,11 @@ test:
     - ./gradlew assembleDebug
     - bin/android-wait-for-emulator
     - bin/run-tests test.namespace
+
+language: java
+jdk:
+  - oraclejdk7
+  - openjdk7
+
+before_install:
+ - chmod +x gradlew
