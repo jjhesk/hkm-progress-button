@@ -2,7 +2,7 @@
 Base on android-process-button this is the advanced version of the android-process-button.
 ## Description 
 [ ![Download](https://api.bintray.com/packages/jjhesk/maven/hkmprocessbuttons/images/download.svg) ](https://bintray.com/jjhesk/maven/hkmprocessbuttons/_latestVersion)[![Maven Central](https://img.shields.io/github/tag/jjhesk/hkm-progress-button.svg?label=maven)](https://jitpack.io/#jjhesk/hkm-progress-button) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Process%20Button-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1691)
-[![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/) [release log](https://github.com/jjhesk/hkm-progress-button/releases)
+[![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/) [release log](https://github.com/jjhesk/hkm-progress-button/releases) [![Circle CI](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master.svg?style=svg)](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master)
 
 Android Buttons With Built-in Progress Meters.
 
