@@ -9,8 +9,8 @@ buildscript {
 
         //upload only
         // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-         classpath 'com.github.dcendents:android-maven-plugin:1.2'
-        classpath 'com.novoda:bintray-release:0.2.7'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+        classpath 'com.novoda:bintray-release:0.2.11'
     }
 }
 

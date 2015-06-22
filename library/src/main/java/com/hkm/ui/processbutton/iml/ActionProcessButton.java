@@ -315,6 +315,11 @@ public class ActionProcessButton extends ProcessButton {
 
         /**
          * Set the drawing bounds of this SwipeProgressBar.
+         *
+         * @param left   position left
+         * @param top    position on the top
+         * @param right  position on the right
+         * @param bottom position on the bottom
          */
         public void setBounds(int left, int top, int right, int bottom) {
             mBounds.left = left;

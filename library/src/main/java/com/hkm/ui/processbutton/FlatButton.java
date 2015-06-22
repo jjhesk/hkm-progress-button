@@ -167,7 +167,7 @@ public class FlatButton extends Button {
     /**
      * Set the View's background. Masks the API changes made in Jelly Bean.
      *
-     * @param drawable
+     * @param drawable  the image
      */
     @SuppressWarnings("deprecation")
     @SuppressLint("NewApi")
