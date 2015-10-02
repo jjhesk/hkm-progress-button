@@ -9,6 +9,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.view.View;
 
 
 public abstract class ProcessButton extends FlatButton {
@@ -144,11 +145,11 @@ public abstract class ProcessButton extends FlatButton {
         setBackgroundCompat(getNormalDrawable());
     }
 
-    private OnClickListener list;
+    private OnClickListener normal_state_click, complete_state_click;
     private LayerDrawable complete_layerdrawable;
 
     public ProcessButton setOnClickCompleteState(OnClickListener listener) {
-        list = listener;
+        complete_state_click = listener;
         return this;
     }
 
@@ -157,9 +158,22 @@ public abstract class ProcessButton extends FlatButton {
         return this;
     }
 
+    /**
+     * Register a callback to be invoked when this view is clicked. If this view is not
+     * clickable, it becomes clickable.
+     *
+     * @param l The callback that will run
+     * @see #setClickable(boolean)
+     */
+    @Override
+    public void setOnClickListener(OnClickListener l) {
+        super.setOnClickListener(l);
+        normal_state_click = l;
+    }
+
     protected void onCompleteStateButton() {
-        if (list != null) {
-            setOnClickListener(list);
+        if (complete_state_click != null) {
+            setOnClickListener(complete_state_click);
             setEnabled(true);
         }
         if (complete_layerdrawable != null) {
@@ -180,6 +194,9 @@ public abstract class ProcessButton extends FlatButton {
             setText(getNormalText());
         }
         setBackgroundCompat(getNormalDrawable());
+        if (normal_state_click != null) {
+            setOnClickListener(normal_state_click);
+        }
     }
 
     @Override

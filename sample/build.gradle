@@ -3,12 +3,12 @@ import java.text.SimpleDateFormat
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 22
         applicationId project.PACKAGE_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
@@ -17,6 +17,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    //compile project(':library')
-    compile 'com.hkm:hkmprocessbuttons:1.0.61@aar'
+    compile project(':library')
+    //compile 'com.hkm:hkmprocessbuttons:1.0.61@aar'
 }

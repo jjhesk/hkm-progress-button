@@ -50,7 +50,7 @@ dependencies {
 ```gradle
 
 repositories {maven { url "http://dl.bintray.com/jjhesk/maven" }}
-dependencies {compile 'com.hkm:hkmprocessbuttons:1.0.61:@aar'}
+dependencies {compile 'com.hkm:hkmprocessbuttons:1.1.0'}
 ```
 
 ### Sample
