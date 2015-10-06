@@ -22,13 +22,14 @@ public abstract class ProcessButton extends FlatButton {
     private GradientDrawable mCompleteDrawable;
     private GradientDrawable mErrorDrawable;
 
-    private CharSequence mLoadingText;
-    private CharSequence mCompleteText;
-    private CharSequence mErrorText;
+    protected CharSequence mLoadingText;
+    protected CharSequence mCompleteText;
+    protected CharSequence mErrorText;
     public static final int
             NORMAL = 0,
             FULL = 100,
             FULLBUTTON = -8,
+            PROGRESS = -3,
             ERROR = -1;
 
     public ProcessButton(Context context, AttributeSet attrs, int defStyle) {
@@ -91,7 +92,6 @@ public abstract class ProcessButton extends FlatButton {
 
     public void setProgress(int progress) {
         mProgress = progress;
-
         if (mProgress == mMinProgress) {
             onNormalState();
         } else if (mProgress == mMaxProgress) {
@@ -131,25 +131,28 @@ public abstract class ProcessButton extends FlatButton {
           return super.isEnabled();
       }
       */
-    protected void onErrorState() {
-        if (getErrorText() != null) {
-            setText(getErrorText());
-        }
-        setBackgroundCompat(getErrorDrawable());
-    }
 
-    protected void onProgress() {
-        if (getLoadingText() != null) {
-            setText(getLoadingText());
-        }
-        setBackgroundCompat(getNormalDrawable());
-    }
 
-    private OnClickListener normal_state_click, complete_state_click;
+    private OnClickListener normal_state_click, complete_state_click, error_state_click, process_state_click;
     private LayerDrawable complete_layerdrawable;
 
     public ProcessButton setOnClickCompleteState(OnClickListener listener) {
         complete_state_click = listener;
+        return this;
+    }
+
+    public ProcessButton setOnErrorClickState(OnClickListener listener) {
+        error_state_click = listener;
+        return this;
+    }
+
+    public ProcessButton setOnProcessState(OnClickListener listener) {
+        process_state_click = listener;
+        return this;
+    }
+
+    public ProcessButton setOnClickNormalState(OnClickListener listener) {
+        normal_state_click = listener;
         return this;
     }
 
@@ -158,22 +161,57 @@ public abstract class ProcessButton extends FlatButton {
         return this;
     }
 
+    public ProcessButton setText(CharSequence word, final int state_integer) {
+        if (state_integer == FULLBUTTON || state_integer == mMaxProgress || state_integer == FULL) {
+            mCompleteText = word;
+        } else if (state_integer == NORMAL) {
+            mNormalText = word;
+        } else if (state_integer == ERROR) {
+            mErrorText = word;
+        } else if (state_integer == PROGRESS) {
+            mLoadingText = word;
+        }
+        return this;
+    }
+
     /**
      * Register a callback to be invoked when this view is clicked. If this view is not
-     * clickable, it becomes clickable.
+     * clickable, it becomes clickable. Please do not use this one because this button is not used for making set click listener. Instead please consider
+     * - setOnClickNormalState
+     * - setOnClickCompleteState
      *
      * @param l The callback that will run
      * @see #setClickable(boolean)
      */
+    @Deprecated
     @Override
     public void setOnClickListener(OnClickListener l) {
-        super.setOnClickListener(l);
-        normal_state_click = l;
+
+    }
+
+    protected void onErrorState() {
+        if (getErrorText() != null) {
+            setText(getErrorText());
+        }
+        setBackgroundCompat(getErrorDrawable());
+        super.setOnClickListener(error_state_click);
+    }
+
+    protected void onProgress() {
+        if (getLoadingText() != null) {
+            setText(getLoadingText());
+        }
+        setBackgroundCompat(getNormalDrawable());
+        if (process_state_click != null) {
+            super.setOnClickListener(process_state_click);
+        } else {
+            setEnabled(false);
+        }
     }
 
     protected void onCompleteStateButton() {
         if (complete_state_click != null) {
-            setOnClickListener(complete_state_click);
+            super.setOnClickListener(complete_state_click);
             setEnabled(true);
         }
         if (complete_layerdrawable != null) {
@@ -187,6 +225,7 @@ public abstract class ProcessButton extends FlatButton {
             setText(getCompleteText());
         }
         setBackgroundCompat(getCompleteDrawable());
+        super.setOnClickListener(complete_state_click);
     }
 
     protected void onNormalState() {
@@ -195,7 +234,8 @@ public abstract class ProcessButton extends FlatButton {
         }
         setBackgroundCompat(getNormalDrawable());
         if (normal_state_click != null) {
-            setOnClickListener(normal_state_click);
+            super.setOnClickListener(normal_state_click);
+            setEnabled(true);
         }
     }
 

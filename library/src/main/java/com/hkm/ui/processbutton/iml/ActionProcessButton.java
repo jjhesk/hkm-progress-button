@@ -313,8 +313,14 @@ public class ActionProcessButton extends ProcessButton {
             canvas.restore();
         }
 
+
         /**
          * Set the drawing bounds of this SwipeProgressBar.
+         *
+         * @param left   L
+         * @param top    T
+         * @param right  R
+         * @param bottom B
          */
         public void setBounds(int left, int top, int right, int bottom) {
             mBounds.left = left;

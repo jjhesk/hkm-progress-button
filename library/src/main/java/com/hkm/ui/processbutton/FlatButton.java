@@ -16,7 +16,7 @@ public class FlatButton extends Button {
 
     private StateListDrawable mNormalDrawable;
     private GradientDrawable mDisabledDrawable;
-    private CharSequence mNormalText;
+    protected CharSequence mNormalText;
     private float cornerRadius;
     private TypedArray xml;
 
