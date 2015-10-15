@@ -25,4 +25,21 @@
         custom:pb_textComplete="@string/Done"
         custom:pb_textProgress="@string/Loading" />
 
+
+    <com.hkm.ui.processbutton.iml.SubmitProcessButton
+        android:id="@+id/btdfff"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:minWidth="100dp"
+        android:text="Test UP"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        custom:pb_borderWidth="0.3dp"
+        custom:pb_colorBorder="@color/green_complete"
+        custom:pb_colorNormal="@color/purple_progress"
+        custom:pb_cornerRadius="0dp"
+        custom:pb_presentation="flat_button"
+        custom:pb_textComplete="@string/Done"
+        custom:pb_textProgress="@string/Loading" />
+
 </LinearLayout>

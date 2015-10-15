@@ -19,13 +19,13 @@ public class UploadActivity extends Activity implements ProgressGenerator.OnComp
         final ProgressGenerator progressGenerator = new ProgressGenerator(this);
         final GenerateProcessButton btnUpload =
                 (GenerateProcessButton) findViewById(R.id.btnUpload);
-        btnUpload.setOnClickListener(new View.OnClickListener() {
+        btnUpload.setOnClickNormalState(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressGenerator.start(btnUpload);
                 btnUpload.setEnabled(false);
             }
-        });
+        }).build();
     }
 
     @Override

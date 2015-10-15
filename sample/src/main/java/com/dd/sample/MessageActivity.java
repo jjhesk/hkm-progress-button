@@ -22,14 +22,15 @@ public class MessageActivity extends Activity implements ProgressGenerator.OnCom
 
         final ProgressGenerator progressGenerator = new ProgressGenerator(this);
         final SubmitProcessButton btnSend = (SubmitProcessButton) findViewById(R.id.btnSend);
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        btnSend.setOnClickNormalState(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressGenerator.start(btnSend);
                 btnSend.setEnabled(false);
                 editMessage.setEnabled(false);
             }
-        });
+        }).build();
+
     }
 
     @Override

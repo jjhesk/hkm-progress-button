@@ -53,6 +53,9 @@ public class StateSampleActivity extends Activity implements View.OnClickListene
                 t.show(getFragmentManager(), "normal");
             }
         }).setText("message will show state");
+        mBtnAction.build();
+        mBtnSubmit.build();
+        mBtnGenerate.build();
     }
 
     @SuppressLint("ValidFragment")

@@ -30,7 +30,7 @@ public class SignInActivity extends Activity implements ProgressGenerator.OnComp
         } else {
             btnSignIn.setMode(ActionProcessButton.Mode.PROGRESS);
         }
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickNormalState(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressGenerator.start(btnSignIn);
@@ -38,7 +38,7 @@ public class SignInActivity extends Activity implements ProgressGenerator.OnComp
                 editEmail.setEnabled(false);
                 editPassword.setEnabled(false);
             }
-        });
+        }).build();;
     }
 
     @Override

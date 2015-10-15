@@ -2,4 +2,5 @@
 <resources>
     <dimen name="corner_radius">2dp</dimen>
     <dimen name="layer_padding">3dp</dimen>
+    <dimen name="border_width">0.5dp</dimen>
 </resources>

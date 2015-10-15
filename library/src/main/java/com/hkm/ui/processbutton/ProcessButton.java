@@ -67,7 +67,7 @@ public abstract class ProcessButton extends FlatButton {
     }
 
     private int getColorXML(int colorResId, int styleIdColor) {
-        int default_color = getColor(colorResId);
+        int default_color = getResources().getColor(colorResId);
         return xmlData.getColor(styleIdColor, default_color);
     }
 
@@ -187,6 +187,10 @@ public abstract class ProcessButton extends FlatButton {
     @Override
     public void setOnClickListener(OnClickListener l) {
 
+    }
+
+    public void build() {
+        onNormalState();
     }
 
     protected void onErrorState() {

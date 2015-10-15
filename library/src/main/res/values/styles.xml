@@ -9,9 +9,15 @@
     </declare-styleable>
 
     <declare-styleable name="FlatButton">
-        <attr name="pb_colorDisabled" format="color" />
         <attr name="pb_colorPressed" format="color" />
         <attr name="pb_colorNormal" format="color" />
+        <attr name="pb_colorDisabled" format="color" />
+        <attr name="pb_colorBorder" format="color" />
+        <attr name="pb_borderWidth" format="dimension" />
         <attr name="pb_cornerRadius" format="dimension" />
+        <attr name="pb_presentation" format="enum">
+            <enum name="pad_button" value="1" />
+            <enum name="flat_button" value="2" />
+        </attr>
     </declare-styleable>
 </resources>
