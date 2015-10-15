@@ -11,4 +11,5 @@
     <color name="holo_green_light">#ff99cc00</color>
     <color name="holo_orange_light">#ffffbb33</color>
     <color name="holo_red_light">#ffff4444</color>
+    <color name="border">#000000</color>
 </resources>

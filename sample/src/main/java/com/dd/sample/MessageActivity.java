@@ -1,6 +1,7 @@
 package com.dd.sample;
 
 import com.dd.sample.utils.ProgressGenerator;
+import com.hkm.ui.processbutton.iml.ArrowButton;
 import com.hkm.ui.processbutton.iml.SubmitProcessButton;
 
 
@@ -30,7 +31,8 @@ public class MessageActivity extends Activity implements ProgressGenerator.OnCom
                 editMessage.setEnabled(false);
             }
         }).build();
-
+        final ArrowButton btn = (ArrowButton) findViewById(R.id.arrowBtn);
+        btn.build();
     }
 
     @Override

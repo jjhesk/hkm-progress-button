@@ -44,7 +44,7 @@ The lib is available on maven jitpack, so you will need to add a class path for 
 ```gradle
 
 repositories {maven { url "http://dl.bintray.com/jjhesk/maven" }}
-dependencies {compile 'com.hkm:hkmprocessbuttons:1.1.6'}
+dependencies {compile 'com.hkm:hkmprocessbuttons:1.1.7'}
 ```
 
 ### Sample

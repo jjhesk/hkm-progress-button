@@ -20,4 +20,7 @@
             <enum name="flat_button" value="2" />
         </attr>
     </declare-styleable>
+    <declare-styleable name="ArrowButton">
+        <attr name="pb_colorArrow" format="color" />
+    </declare-styleable>
 </resources>

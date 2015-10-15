@@ -64,7 +64,9 @@ public abstract class ProcessButton extends FlatButton {
         if (attrs != null) {
             initAttributes(context, attrs);
         }
+
     }
+
 
     private int getColorXML(int colorResId, int styleIdColor) {
         int default_color = getResources().getColor(colorResId);
@@ -85,6 +87,7 @@ public abstract class ProcessButton extends FlatButton {
             mProgressDrawable.setColor(getColorXML(R.color.purple_progress, R.styleable.ProcessButton_pb_colorProgress));
             mCompleteDrawable.setColor(getColorXML(R.color.green_complete, R.styleable.ProcessButton_pb_colorComplete));
             mErrorDrawable.setColor(getColorXML(R.color.red_error, R.styleable.ProcessButton_pb_colorError));
+
         } finally {
             xmlData.recycle();
         }
@@ -220,6 +223,8 @@ public abstract class ProcessButton extends FlatButton {
         }
         if (complete_layerdrawable != null) {
             setBackgroundCompat(complete_layerdrawable);
+        } else {
+            setBackgroundCompat(getCompleteDrawable());
         }
         setText(getCompleteText());
     }

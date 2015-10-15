@@ -2,15 +2,15 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
         android:id="@+id/editMessage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginRight="16dp"
-        android:layout_weight="1.0"
+
         android:inputType="textShortMessage"
         android:text="@string/Question" />
 
@@ -27,9 +27,10 @@
 
 
     <com.hkm.ui.processbutton.iml.SubmitProcessButton
-        android:id="@+id/btdfff"
+
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_weight="0.2"
         android:minWidth="100dp"
         android:text="Test UP"
         android:textColor="@android:color/darker_gray"
@@ -39,6 +40,23 @@
         custom:pb_colorNormal="@color/purple_progress"
         custom:pb_cornerRadius="0dp"
         custom:pb_presentation="flat_button"
+        custom:pb_textComplete="@string/Done"
+        custom:pb_textProgress="@string/Loading" />
+
+    <com.hkm.ui.processbutton.iml.ArrowButton
+        android:id="@+id/arrowBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:minWidth="100dp"
+        android:text="Arrow on the side"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        custom:pb_borderWidth="1dp"
+        custom:pb_colorArrow="@color/grey_disabled"
+        custom:pb_colorBorder="@color/border"
+        custom:pb_colorNormal="@color/blue_pressed"
+        custom:pb_colorPressed="@color/holo_green_light"
         custom:pb_textComplete="@string/Done"
         custom:pb_textProgress="@string/Loading" />
 

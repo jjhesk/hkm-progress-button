@@ -3,6 +3,8 @@ package com.hkm.ui.processbutton;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -10,21 +12,26 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StyleableRes;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.Button;
+
+import java.util.Objects;
 
 
 public class FlatButton extends Button {
-    public static final int BUTTON_BOTTOM_PAD = 1, BUTTON_FLAT = 2;
+    public static final int BUTTON_BOTTOM_PAD = 1, BUTTON_FLAT = 2, BUTTON_EXTENSION = 3;
     private StateListDrawable mNormalDrawable;
     private GradientDrawable mDisabledDrawable;
     protected CharSequence mNormalText;
     private float cornerRadius;
-    private TypedArray xml;
-    private int borderWidthDefault;
+    protected TypedArray mAttr;
+    protected int defBorderWidth;
     private int button_presentation;
     private LayerDrawable drawableNormal;
+    protected int defColor_blue, defColor_blue_dark, defColor_white;
 
     public FlatButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -60,86 +67,102 @@ public class FlatButton extends Button {
         return button_pres;
     }
 
+    protected void initAttributesExtension(Context c) {
+    }
+
     private void initAttributes(Context context, AttributeSet attributeSet) {
-        xml = getTypedArray(context, attributeSet, R.styleable.FlatButton);
-        if (xml == null) {
+        mAttr = getTypedArray(context, attributeSet, R.styleable.FlatButton);
+        if (mAttr == null) {
             return;
         }
 
         try {
-            button_presentation = extension_button_presentation(xml.getInt(R.styleable.FlatButton_pb_presentation, BUTTON_BOTTOM_PAD));
-            borderWidthDefault = context.getResources().getDimensionPixelOffset(R.dimen.border_width);
-
+            defColor_blue = getResources().getColor(R.color.blue_normal);
+            defColor_blue_dark = getResources().getColor(R.color.blue_pressed);
+            defBorderWidth = context.getResources().getDimensionPixelOffset(R.dimen.border_width);
+            defColor_white = context.getResources().getColor(R.color.grey_disabled);
             float defValue = getDimension(R.dimen.corner_radius);
-            cornerRadius = xml.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
+            cornerRadius = mAttr.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
+
+            button_presentation = extension_button_presentation(mAttr.getInt(R.styleable.FlatButton_pb_presentation, BUTTON_BOTTOM_PAD));
+            initAttributesExtension(context);
+
             mNormalDrawable.addState(new int[]{android.R.attr.state_pressed}, createPressedDrawable());
             mNormalDrawable.addState(new int[]{android.R.attr.state_focused}, createPressedDrawable());
             mNormalDrawable.addState(new int[]{android.R.attr.state_selected}, createPressedDrawable());
             mNormalDrawable.addState(new int[]{-android.R.attr.state_enabled}, createDisabledDrawable());
             mNormalDrawable.addState(new int[]{}, createNormalDrawable());
         } finally {
-            xml.recycle();
+            mAttr.recycle();
         }
     }
 
-
-    private LayerDrawable drawble_pad_button() {
-        LayerDrawable drawableNormal =
-                (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
-
-        GradientDrawable drawableTop =
-                (GradientDrawable) drawableNormal.getDrawable(0).mutate();
-        drawableTop.setCornerRadius(getCornerRadius());
-
-        int blueDark = getResources().getColor(R.color.blue_pressed);
-        int colorPressed = xml.getColor(R.styleable.FlatButton_pb_colorPressed, blueDark);
-        drawableTop.setColor(colorPressed);
-
-        GradientDrawable drawableBottom =
-                (GradientDrawable) drawableNormal.getDrawable(1).mutate();
-        drawableBottom.setCornerRadius(getCornerRadius());
-
-        int blueNormal = getResources().getColor(R.color.blue_normal);
-        int colorNormal = xml.getColor(R.styleable.FlatButton_pb_colorNormal, blueNormal);
-        drawableBottom.setColor(colorNormal);
-        return drawableNormal;
+    /**
+     * maded for extension: please write your own extension in here
+     *
+     * @return the layer drawable in here
+     */
+    protected LayerDrawable drawable_button_extended() {
+        return drawble_pad_button();
     }
 
-    private LayerDrawable drawble_flat_button() {
-        drawableNormal = (LayerDrawable) getDrawable(R.drawable.rect_stroke).mutate();
+    protected LayerDrawable getLayersById(@DrawableRes int id) {
+        return (LayerDrawable) getDrawable(id).mutate();
+    }
 
-        GradientDrawable drawableBottom =
-                (GradientDrawable) drawableNormal.getDrawable(0);
-        drawableBottom.setCornerRadius(getCornerRadius());
-
-        int blueNormal = getResources().getColor(R.color.blue_normal);
-        int colorNormal = xml.getColor(R.styleable.FlatButton_pb_colorNormal, blueNormal);
-        drawableBottom.setColor(colorNormal);
-
-        int colorStroke = xml.getColor(R.styleable.FlatButton_pb_colorBorder, blueNormal);
-        int strokeWidth = xml.getDimensionPixelOffset(R.styleable.FlatButton_pb_borderWidth, borderWidthDefault);
-        drawableBottom.setStroke(strokeWidth, colorStroke);
-        return drawableNormal;
+    protected GradientDrawable getFromLayer(final LayerDrawable draw, final int number_layer) {
+        if (draw.getNumberOfLayers() > number_layer) {
+            return (GradientDrawable) draw.getDrawable(number_layer).mutate();
+        } else {
+            return null;
+        }
     }
 
 
     private int getColorXML(@ColorRes int colorResId, @StyleableRes int styleIdColor) {
         int default_color = getResources().getColor(colorResId);
-        return xml.getColor(styleIdColor, default_color);
-    }
-
-    private GradientDrawable getLayer(int n, int resIdLayers) {
-        LayerDrawable drawableNormal = (LayerDrawable) getDrawable(resIdLayers).mutate();
-        return (GradientDrawable) drawableNormal.getDrawable(n).mutate();
-    }
-
-    private GradientDrawable getLayer(int n, LayerDrawable j) {
-        return (GradientDrawable) j.getDrawable(n).mutate();
+        return mAttr.getColor(styleIdColor, default_color);
     }
 
     public void setDisableDrawable(GradientDrawable disableDrawable) {
         mDisabledDrawable = disableDrawable;
     }
+
+    private LayerDrawable drawble_pad_button() {
+        final LayerDrawable drawableNormal = getLayersById(R.drawable.rect_normal);
+
+        final GradientDrawable drawableTop = getFromLayer(drawableNormal, 0);
+        drawableTop.setCornerRadius(getCornerRadius());
+
+        int colorPressed = mAttr.getColor(R.styleable.FlatButton_pb_colorPressed, defColor_blue_dark);
+        drawableTop.setColor(colorPressed);
+
+        final GradientDrawable drawableBottom = getFromLayer(drawableNormal, 1);
+
+        drawableBottom.setCornerRadius(getCornerRadius());
+
+        int colorNormal = mAttr.getColor(R.styleable.FlatButton_pb_colorNormal, defColor_blue);
+        drawableBottom.setColor(colorNormal);
+        return drawableNormal;
+    }
+
+    private LayerDrawable drawble_flat_button() {
+        final LayerDrawable drawableNormal = getLayersById(R.drawable.rect_stroke);
+
+        GradientDrawable drawableBottom = getFromLayer(drawableNormal, 0);
+
+        drawableBottom.setCornerRadius(getCornerRadius());
+
+        int colorNormal = mAttr.getColor(R.styleable.FlatButton_pb_colorNormal, defColor_blue);
+        drawableBottom.setColor(colorNormal);
+
+        int colorStroke = mAttr.getColor(R.styleable.FlatButton_pb_colorBorder, defColor_blue);
+        int strokeWidth = mAttr.getDimensionPixelOffset(R.styleable.FlatButton_pb_borderWidth, defBorderWidth);
+
+        drawableBottom.setStroke(strokeWidth, colorStroke);
+        return drawableNormal;
+    }
+
 
     private LayerDrawable createNormalDrawable() {
         switch (button_presentation) {
@@ -148,44 +171,33 @@ public class FlatButton extends Button {
             case BUTTON_FLAT:
                 return drawble_flat_button();
             default:
-                return drawble_pad_button();
+                return drawable_button_extended();
         }
     }
 
 
-    public LayerDrawable creatNormalDrawable(int one_color) {
-        LayerDrawable drawableNormal = (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
-        GradientDrawable drawableTop = getLayer(0, drawableNormal);
-        drawableTop.setCornerRadius(getCornerRadius());
-        drawableTop.setColor(getResources().getColor(one_color));
-        GradientDrawable drawableBottom = getLayer(1, drawableNormal);
-        drawableBottom.setCornerRadius(getCornerRadius());
-        drawableBottom.setColor(getResources().getColor(one_color));
-        return drawableNormal;
-    }
-
     public LayerDrawable creatNormalDrawable(int top_color_id, int bottom_color_id) {
         LayerDrawable drawableNormal = (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
-        GradientDrawable drawableTop = getLayer(0, drawableNormal);
+        GradientDrawable drawableTop = getFromLayer(drawableNormal, 0);
         drawableTop.setCornerRadius(getCornerRadius());
         drawableTop.setColor(getResources().getColor(top_color_id));
-        GradientDrawable drawableBottom = getLayer(1, drawableNormal);
+        GradientDrawable drawableBottom = getFromLayer(drawableNormal, 1);
         drawableBottom.setCornerRadius(getCornerRadius());
         drawableBottom.setColor(getResources().getColor(bottom_color_id));
         return drawableNormal;
     }
 
-    private LayerDrawable createDisabledDrawable() {
+    protected LayerDrawable createDisabledDrawable() {
         LayerDrawable normal = (LayerDrawable) getDrawable(R.drawable.rect_disable).mutate();
-        GradientDrawable layer1 = getLayer(1, normal);
+        GradientDrawable layer1 = getFromLayer(normal, 1);
         layer1.setCornerRadius(getCornerRadius());
-        GradientDrawable layer0 = getLayer(0, normal);
+        GradientDrawable layer0 = getFromLayer(normal, 0);
         layer0.setCornerRadius(getCornerRadius());
         layer0.setColor(getColorXML(R.color.grey_disabled, R.styleable.FlatButton_pb_colorDisabled));
         return normal;
     }
 
-    private Drawable createPressedDrawable() {
+    protected Drawable createPressedDrawable() {
         GradientDrawable drawablePressed = (GradientDrawable) getDrawable(R.drawable.rect_pressed).mutate();
         drawablePressed.setCornerRadius(getCornerRadius());
         drawablePressed.setColor(getColorXML(R.color.blue_pressed, R.styleable.FlatButton_pb_colorPressed));
