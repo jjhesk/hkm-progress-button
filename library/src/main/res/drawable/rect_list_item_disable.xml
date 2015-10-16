@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/corner_radius" />
@@ -12,15 +11,5 @@
             <corners android:radius="@dimen/corner_radius" />
             <solid android:color="@color/blue_normal" />
         </shape>
-    </item>
-    <item
-        android:bottom="5dp"
-        android:top="5dp">
-        <bitmap
-            android:antialias="true"
-            android:gravity="right"
-            android:shape="rectangle"
-            android:src="@drawable/ic_arrow_to_right"
-            android:tint="@color/blue_pressed" />
     </item>
 </layer-list>

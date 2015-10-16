@@ -22,5 +22,9 @@
     </declare-styleable>
     <declare-styleable name="ArrowButton">
         <attr name="pb_colorArrow" format="color" />
+        <attr name="pb_arrowRes" format="reference" />
+        <attr name="pb_verticalPadding" format="dimension" />
+        <attr name="pb_topLineThickness" format="dimension" />
+        <attr name="pb_bottomLineThickness" format="dimension" />
     </declare-styleable>
 </resources>

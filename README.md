@@ -8,6 +8,7 @@ Android Buttons With Built-in Progress Meters.
 
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
+![](screenshots/new_sample.png)
 
 ### Wiki
 
@@ -44,7 +45,7 @@ The lib is available on maven jitpack, so you will need to add a class path for 
 ```gradle
 
 repositories {maven { url "http://dl.bintray.com/jjhesk/maven" }}
-dependencies {compile 'com.hkm:hkmprocessbuttons:1.1.7'}
+dependencies {compile 'com.hkm:hkmprocessbuttons:1.2.1'}
 ```
 
 ### Sample

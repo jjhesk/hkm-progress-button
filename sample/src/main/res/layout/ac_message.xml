@@ -18,6 +18,7 @@
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginBottom="10dp"
         android:minWidth="100dp"
         android:text="@string/Send"
         android:textColor="@android:color/white"
@@ -28,8 +29,9 @@
 
     <com.hkm.ui.processbutton.iml.SubmitProcessButton
 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="0.2"
         android:minWidth="100dp"
         android:text="Test UP"
@@ -52,12 +54,78 @@
         android:text="Arrow on the side"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
-        custom:pb_borderWidth="1dp"
-        custom:pb_colorArrow="@color/grey_disabled"
+        custom:pb_arrowRes="@drawable/ic_rr"
+        custom:pb_bottomLineThickness="1dp"
+        custom:pb_colorArrow="@color/holo_red_light"
         custom:pb_colorBorder="@color/border"
-        custom:pb_colorNormal="@color/blue_pressed"
-        custom:pb_colorPressed="@color/holo_green_light"
+        custom:pb_colorNormal="@android:color/white"
+        custom:pb_colorPressed="@color/blue_pressed"
         custom:pb_textComplete="@string/Done"
-        custom:pb_textProgress="@string/Loading" />
+        custom:pb_textProgress="@string/Loading"
+        custom:pb_topLineThickness="1dp"
+        custom:pb_verticalPadding="20dp" />
+
+
+    <com.hkm.ui.processbutton.iml.ArrowButton
+        android:id="@+id/arrowBtn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:minWidth="100dp"
+        android:text="Arrow on the side"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        custom:pb_arrowRes="@drawable/ic_rr"
+        custom:pb_bottomLineThickness="1dp"
+        custom:pb_colorArrow="@color/holo_red_light"
+        custom:pb_colorBorder="@color/border"
+        custom:pb_colorNormal="@android:color/white"
+        custom:pb_colorPressed="@color/blue_pressed"
+        custom:pb_textComplete="@string/Done"
+        custom:pb_textProgress="@string/Loading"
+        custom:pb_topLineThickness="0dp"
+        custom:pb_verticalPadding="20dp" />
+
+
+    <com.hkm.ui.processbutton.iml.ArrowButton
+        android:id="@+id/arrowBtn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:minWidth="100dp"
+        android:text="Arrow on the side"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        custom:pb_arrowRes="@drawable/ic_rr"
+        custom:pb_bottomLineThickness="1dp"
+        custom:pb_colorArrow="@color/holo_red_light"
+        custom:pb_colorBorder="@color/border"
+        custom:pb_colorNormal="@android:color/white"
+        custom:pb_colorPressed="@color/blue_pressed"
+        custom:pb_textComplete="@string/Done"
+        custom:pb_textProgress="@string/Loading"
+        custom:pb_topLineThickness="0dp"
+        custom:pb_verticalPadding="20dp" />
+
+
+    <com.hkm.ui.processbutton.iml.ArrowButton
+        android:id="@+id/arrowBtn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:minWidth="100dp"
+        android:text="Arrow on the side"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        custom:pb_arrowRes="@drawable/ic_rr"
+        custom:pb_bottomLineThickness="1dp"
+        custom:pb_colorArrow="@color/holo_red_light"
+        custom:pb_colorBorder="@color/border"
+        custom:pb_colorNormal="@android:color/white"
+        custom:pb_colorPressed="@color/blue_pressed"
+        custom:pb_textComplete="@string/Done"
+        custom:pb_textProgress="@string/Loading"
+        custom:pb_topLineThickness="0dp"
+        custom:pb_verticalPadding="20dp" />
 
 </LinearLayout>

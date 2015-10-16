@@ -13,14 +13,5 @@
             <solid android:color="@color/blue_normal" />
         </shape>
     </item>
-    <item
-        android:bottom="5dp"
-        android:top="5dp">
-        <bitmap
-            android:antialias="true"
-            android:gravity="right"
-            android:shape="rectangle"
-            android:src="@drawable/ic_arrow_to_right"
-            android:tint="@color/blue_pressed" />
-    </item>
+
 </layer-list>

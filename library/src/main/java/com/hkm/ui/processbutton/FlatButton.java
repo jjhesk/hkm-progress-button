@@ -18,6 +18,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Button;
 
+import com.hkm.ui.processbutton.Util.SAutoBgButtonBackgroundDrawable;
+
 import java.util.Objects;
 
 
@@ -67,7 +69,7 @@ public class FlatButton extends Button {
         return button_pres;
     }
 
-    protected void initAttributesExtension(Context c) {
+    protected void initAttributesExtension(Context c, AttributeSet t) {
     }
 
     private void initAttributes(Context context, AttributeSet attributeSet) {
@@ -83,18 +85,20 @@ public class FlatButton extends Button {
             defColor_white = context.getResources().getColor(R.color.grey_disabled);
             float defValue = getDimension(R.dimen.corner_radius);
             cornerRadius = mAttr.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
-
             button_presentation = extension_button_presentation(mAttr.getInt(R.styleable.FlatButton_pb_presentation, BUTTON_BOTTOM_PAD));
-            initAttributesExtension(context);
-
-            mNormalDrawable.addState(new int[]{android.R.attr.state_pressed}, createPressedDrawable());
-            mNormalDrawable.addState(new int[]{android.R.attr.state_focused}, createPressedDrawable());
-            mNormalDrawable.addState(new int[]{android.R.attr.state_selected}, createPressedDrawable());
-            mNormalDrawable.addState(new int[]{-android.R.attr.state_enabled}, createDisabledDrawable());
-            mNormalDrawable.addState(new int[]{}, createNormalDrawable());
+            initAttributesExtension(context, attributeSet);
+            constructNormalDrawable(mNormalDrawable);
         } finally {
             mAttr.recycle();
         }
+    }
+
+    protected void constructNormalDrawable(StateListDrawable list) {
+        list.addState(new int[]{android.R.attr.state_pressed}, createPressedDrawable());
+        list.addState(new int[]{android.R.attr.state_focused}, createPressedDrawable());
+        list.addState(new int[]{android.R.attr.state_selected}, createPressedDrawable());
+        list.addState(new int[]{-android.R.attr.state_enabled}, createDisabledDrawable());
+        list.addState(new int[]{}, createNormalDrawable());
     }
 
     /**
@@ -212,7 +216,6 @@ public class FlatButton extends Button {
         return getResources().getDimension(id);
     }
 
-
     protected TypedArray getTypedArray(Context context, AttributeSet attributeSet, int[] attr) {
         return context.obtainStyledAttributes(attributeSet, attr, 0, 0);
     }
@@ -232,21 +235,21 @@ public class FlatButton extends Button {
     /**
      * Set the View's background. Masks the API changes made in Jelly Bean.
      *
-     * @param drawable the drawable
+     * @param draw the drawable
      */
     @SuppressWarnings("deprecation")
     @SuppressLint("NewApi")
-    public void setBackgroundCompat(Drawable drawable) {
+    public void setBackgroundCompat(Drawable draw) {
         int pL = getPaddingLeft();
         int pT = getPaddingTop();
         int pR = getPaddingRight();
         int pB = getPaddingBottom();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(drawable);
+            setBackground(draw);
         } else {
-            setBackgroundDrawable(drawable);
+            setBackgroundDrawable(draw);
         }
         setPadding(pL, pT, pR, pB);
     }
+
 }
