@@ -15,12 +15,37 @@ Android Buttons With Built-in Progress Meters.
 ![](screenshots/sample1_small2.gif)
 ![](screenshots/new_sample.png)
 ![](screenshots/diagram-v-0-0-2.png)
-![](screenshots/sample2.png)
-![](screenshots/sample3.png)
 
 ### Read more with the development guide in Wiki
 - [Home](https://github.com/jjhesk/hkm-progress-button/wiki)
 - [Support XML attributes](https://github.com/jjhesk/hkm-progress-button/blob/master/library/src/main/res/values/styles.xml)
+
+### Attributes
+
+There are several attributes you can set:
+
+| attr | description| button module base |
+| :---- | :---- | :---- |
+| pb_textProgress| the text content when the process is proceeding | ProcessButton |
+| pb_textComplete| the complete text |ProcessButton |
+| pb_textError| error message on the button | ProcessButton |
+| pb_colorProgress| the color resource reference on process |ProcessButton|
+| pb_colorComplete| the color resource reference on process completed|ProcessButton |
+| pb_colorError| the color resource reference when its error |ProcessButton |
+| pb_colorPressed| as read | FlatButton |
+| pb_colorNormal|  as read | FlatButton |
+| pb_colorDisabled|  as read | FlatButton |
+| pb_colorBorder| as read | FlatButton |
+| pb_borderWidth| as read | FlatButton |
+| pb_cornerRadius| as read | FlatButton |
+| pb_presentation| as read there are two options: pad_button, flat_button | FlatButton |
+| pb_colorArrow| color reference to tint the arrow | ArrowButton |
+| pb_arrowRes| the drawable reference for the button | ArrowButton |
+| pb_verticalPadding|dimension reference padding between top and bottom on the icon on right side | ArrowButton |
+| pb_topLineThickness| dimension reference for the line thickness on the top | ArrowButton |
+| pb_bottomLineThickness| dimension reference for the line thickness on the bottom | ArrowButton |
+
+
 
 ## Code Sample
 ```java
