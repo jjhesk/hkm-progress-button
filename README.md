@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/jjhesk/hkm-progress-button.png?label=ready&title=Ready)](https://waffle.io/jjhesk/hkm-progress-button)
 # process-button-plus
 Base on android-process-button this is the advanced version of the android-process-button.
 ## Description 
