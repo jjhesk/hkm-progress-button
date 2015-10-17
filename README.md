@@ -87,3 +87,7 @@ dependencies {compile 'com.hkm:hkmprocessbuttons:1.2.1'}
   <img alt="DevAppsDirect"
        src="http://www.inappsquared.com/img/icons/devappsdirect_icon.png" width="48" height="48" />
 </a>
+
+### Status
+
+[![Throughput Graph](https://graphs.waffle.io/jjhesk/hkm-progress-button/throughput.svg)](https://waffle.io/jjhesk/hkm-progress-button/metrics)
