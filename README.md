@@ -1,33 +1,32 @@
 # hkm-progress-button
 Base on android-process-button this is the advanced version of the android-process-button.
 ## Description 
-[ ![Download](https://api.bintray.com/packages/jjhesk/maven/hkmprocessbuttons/images/download.svg) ](https://bintray.com/jjhesk/maven/hkmprocessbuttons/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/jjhesk/maven/hkmprocessbuttons/images/download.svg) ](https://bintray.com/jjhesk/maven/hkmprocessbuttons/_latestVersion)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-hkm--progress--button-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1691)[![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/) [release log](https://github.com/jjhesk/hkm-progress-button/releases)[![Circle CI](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master.svg?style=svg)](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master)
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-hkm--progress--button-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1691)
 
-[![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/) [release log](https://github.com/jjhesk/hkm-progress-button/releases)
-
-[![Circle CI](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master.svg?style=svg)](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master)
+##Main Features
+- ActionProcessButton
+- ArrowButton
+- GenerateProcessButton
+- SubmitProcessButton
 
 Android Buttons With Built-in Progress Meters.
-
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
 ![](screenshots/new_sample.png)
+![](screenshots/diagram-v-0-0-2.png)
+![](screenshots/sample2.png)
+![](screenshots/sample3.png)
 
-### Wiki
-
-- [Home]
-- [Screenshots]
-- [User Guide]
+### Read more with the development guide in Wiki
+- [Home](https://github.com/jjhesk/hkm-progress-button/wiki)
+- [Support XML attributes](https://github.com/jjhesk/hkm-progress-button/blob/master/library/src/main/res/values/styles.xml)
 
 ## Code Sample
 ```java
 
         add_bag = (ActionProcessButton) findViewById(R.id.add_to_bag);
-        
         add_bag.setCompleteText(act.getResources().getString(R.string.button_3));
-        
         add_bag.setText(act.getResources().getString(R.string.button_1));
         // set the progress mode on endless
         add_bag.setMode(ActionProcessButton.Mode.ENDLESS);
