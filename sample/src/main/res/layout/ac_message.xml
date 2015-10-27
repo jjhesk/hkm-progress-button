@@ -117,6 +117,9 @@
         android:text="Arrow on the side"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
+        custom:pb_IconRes="@drawable/account_hb"
+        custom:pb_IconSize="46dp"
+        custom:pb_IconPadding="5dp"
         custom:pb_arrowRes="@drawable/ic_rr"
         custom:pb_bottomLineThickness="1dp"
         custom:pb_colorArrow="@color/holo_red_light"
@@ -126,6 +129,6 @@
         custom:pb_textComplete="@string/Done"
         custom:pb_textProgress="@string/Loading"
         custom:pb_topLineThickness="0dp"
-        custom:pb_verticalPadding="20dp" />
+        custom:pb_verticalPadding="5dp" />
 
 </LinearLayout>

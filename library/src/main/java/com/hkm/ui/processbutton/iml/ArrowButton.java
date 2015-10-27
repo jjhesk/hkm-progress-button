@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -17,6 +18,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -47,6 +49,10 @@ public class ArrowButton extends ProcessButton {
             mColor2,
             mColor3,
             mColor4,
+            icon_size_text_padding,
+            defIconSize,
+            resIcon,
+            resIconSize,
             strokeWidth,
             colorStroke,
             colorArrow,
@@ -137,17 +143,60 @@ public class ArrowButton extends ProcessButton {
         return drawable;
     }
 
+
     protected LayerDrawable createCommonFace() {
-        return afterProcessLayerDrawable(new LayerDrawable(
-                new Drawable[]{
-                        createFillDrawable(),
-                        getArrow()
-                }));
+        if (resIcon != -1) {
+            LayerDrawable ly = afterProcessLayerDrawable(new LayerDrawable(
+                    new Drawable[]{
+                            createFillDrawable(),
+                            getArrow(),
+                            getIcon()
+                    }));
+            ly.setLayerInset(2, icon_size_text_padding, 0, 0, 0);
+            return ly;
+        } else {
+            return afterProcessLayerDrawable(new LayerDrawable(
+                    new Drawable[]{
+                            createFillDrawable(),
+                            getArrow()
+                    }));
+        }
     }
 
     protected LayerDrawable afterProcessLayerDrawable(LayerDrawable ld) {
         ld.setLayerInset(ld.getNumberOfLayers() - 1, 0, vertical_padding, 0, vertical_padding);
         return ld;
+    }
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(
+                bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected Drawable getIcon() {
+        //  BitmapDrawable draw = (BitmapDrawable) getDrawable(resIcon).mutate();
+        //  Bitmap b = draw.getBitmap();
+        BitmapDrawable draw = (BitmapDrawable) getDrawable(resIcon).mutate();
+        Bitmap scaled = Bitmap.createScaledBitmap(draw.getBitmap(), resIconSize, resIconSize, true);
+        BitmapDrawable d = new BitmapDrawable(getContext().getResources(), scaled);
+        // ScaleDrawable sized = new ScaleDrawable(getDrawable(resIcon), Gravity.CENTER, resIconSize, resIconSize);
+        //  sized.setBounds(0, 0, resIconSize, resIconSize);
+        //BitmapDrawable draw = (BitmapDrawable) sized.getDrawable();
+        d.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        setPadding(resIconSize + (int) (icon_size_text_padding * 2), 0, 0, 0);
+        return d;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -156,7 +205,7 @@ public class ArrowButton extends ProcessButton {
         if (colorArrow != 0) {
             draw.setTint(colorArrow);
         }
-        draw.setGravity(Gravity.RIGHT);
+        draw.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
         return draw;
     }
 
@@ -168,6 +217,9 @@ public class ArrowButton extends ProcessButton {
         mColor2 = res.getColor(R.color.holo_green_light);
         mColor3 = res.getColor(R.color.holo_orange_light);
         mColor4 = res.getColor(R.color.holo_red_light);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setStateListAnimator(null);
+        }
     }
 
     /**
@@ -182,6 +234,13 @@ public class ArrowButton extends ProcessButton {
 
     @Override
     protected void initAttributesExtension(Context c, AttributeSet t) {
+        defIconSize = c.getResources().getDimensionPixelOffset(R.dimen.icon_size_def);
+        icon_size_text_padding = c.getResources().getDimensionPixelOffset(R.dimen.icon_size_text_padding_xl);
+
+        icon_size_text_padding = mAttr.getDimensionPixelOffset(R.styleable.ArrowButton_pb_IconPadding
+                , icon_size_text_padding);
+
+
         strokeWidth = mAttr.getDimensionPixelOffset(R.styleable.FlatButton_pb_borderWidth, defBorderWidth);
         colorStroke = mAttr.getColor(R.styleable.FlatButton_pb_colorBorder, defColor_blue);
         colorPressed = mAttr.getColor(R.styleable.FlatButton_pb_colorPressed, defColor_blue_dark);
@@ -194,6 +253,9 @@ public class ArrowButton extends ProcessButton {
         vertical_padding = a.getDimensionPixelOffset(R.styleable.ArrowButton_pb_verticalPadding, defBorderWidth);
         bottomBorder = a.getDimensionPixelOffset(R.styleable.ArrowButton_pb_bottomLineThickness, strokeWidth);
         topBorder = a.getDimensionPixelOffset(R.styleable.ArrowButton_pb_topLineThickness, strokeWidth);
+
+        resIcon = a.getResourceId(R.styleable.ArrowButton_pb_IconRes, -1);
+        resIconSize = a.getDimensionPixelOffset(R.styleable.ArrowButton_pb_IconSize, defIconSize);
         mDrawableSize = 90;
     }
 
