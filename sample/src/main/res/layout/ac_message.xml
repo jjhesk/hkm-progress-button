@@ -28,8 +28,8 @@
 
 
     <com.hkm.ui.processbutton.iml.SubmitProcessButton
-
         android:layout_width="match_parent"
+
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="0.2"
@@ -41,6 +41,7 @@
         custom:pb_colorBorder="@color/green_complete"
         custom:pb_colorNormal="@color/purple_progress"
         custom:pb_cornerRadius="0dp"
+        custom:pb_fontName="Pacifico.ttf"
         custom:pb_presentation="flat_button"
         custom:pb_textComplete="@string/Done"
         custom:pb_textProgress="@string/Loading" />
@@ -102,7 +103,7 @@
         custom:pb_colorBorder="@color/border"
         custom:pb_colorNormal="@android:color/white"
         custom:pb_colorPressed="@color/blue_pressed"
-        custom:pb_fontName="LobsterTwo-Bold.otf"
+
         custom:pb_textComplete="@string/Done"
         custom:pb_textProgress="@string/Loading"
         custom:pb_topLineThickness="0dp"
@@ -127,7 +128,7 @@
         custom:pb_colorBorder="@color/border"
         custom:pb_colorNormal="@android:color/white"
         custom:pb_colorPressed="@color/blue_pressed"
-        custom:pb_fontName="LobsterTwo-Bold.otf"
+
         custom:pb_textComplete="@string/Done"
         custom:pb_textProgress="@string/Loading"
         custom:pb_topLineThickness="0dp"

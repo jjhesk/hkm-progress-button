@@ -35,7 +35,7 @@ public class FlatButton extends Button {
     private int button_presentation;
     private LayerDrawable drawableNormal;
     protected int defColor_blue, defColor_blue_dark, defColor_white;
-    private Typeface typeface;
+    private String font_name;
 
     public FlatButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -57,11 +57,9 @@ public class FlatButton extends Button {
         if (attrs != null) {
             initAttributes(context, attrs);
         }
-        if (typeface != null) {
-            setTypeface(typeface);
-        }
         mNormalText = getText().toString();
         setBackgroundCompat(mNormalDrawable);
+        getFont(context);
     }
 
     /**
@@ -90,15 +88,25 @@ public class FlatButton extends Button {
             defColor_white = context.getResources().getColor(R.color.grey_disabled);
             float defValue = getDimension(R.dimen.corner_radius);
             cornerRadius = mAttr.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
-            String font_name = mAttr.getString(R.styleable.FlatButton_pb_fontName);
-            if (font_name != null) {
-                typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + font_name);
-            }
+            font_name = mAttr.getString(R.styleable.FlatButton_pb_fontName);
             button_presentation = extension_button_presentation(mAttr.getInt(R.styleable.FlatButton_pb_presentation, BUTTON_BOTTOM_PAD));
             initAttributesExtension(context, attributeSet);
             constructNormalDrawable(mNormalDrawable);
         } finally {
             mAttr.recycle();
+        }
+    }
+
+    protected void getFont(Context context) {
+        if (font_name != null) {
+            try {
+                Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + font_name);
+                if (typeface != null) {
+                    setTypeface(typeface);
+                }
+            } catch (Exception e) {
+                Log.d("fonrloading", e.getMessage());
+            }
         }
     }
 
