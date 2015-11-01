@@ -19,6 +19,7 @@
             <enum name="pad_button" value="1" />
             <enum name="flat_button" value="2" />
         </attr>
+        <attr name="pb_fontName" format="string" />
     </declare-styleable>
     <declare-styleable name="ArrowButton">
         <attr name="pb_colorArrow" format="color" />

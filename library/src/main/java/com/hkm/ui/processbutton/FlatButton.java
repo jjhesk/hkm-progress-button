@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -34,6 +35,7 @@ public class FlatButton extends Button {
     private int button_presentation;
     private LayerDrawable drawableNormal;
     protected int defColor_blue, defColor_blue_dark, defColor_white;
+    private Typeface typeface;
 
     public FlatButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -54,6 +56,9 @@ public class FlatButton extends Button {
         mNormalDrawable = new StateListDrawable();
         if (attrs != null) {
             initAttributes(context, attrs);
+        }
+        if (typeface != null) {
+            setTypeface(typeface);
         }
         mNormalText = getText().toString();
         setBackgroundCompat(mNormalDrawable);
@@ -85,6 +90,10 @@ public class FlatButton extends Button {
             defColor_white = context.getResources().getColor(R.color.grey_disabled);
             float defValue = getDimension(R.dimen.corner_radius);
             cornerRadius = mAttr.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
+            String font_name = mAttr.getString(R.styleable.FlatButton_pb_fontName);
+            if (font_name != null) {
+                typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + font_name);
+            }
             button_presentation = extension_button_presentation(mAttr.getInt(R.styleable.FlatButton_pb_presentation, BUTTON_BOTTOM_PAD));
             initAttributesExtension(context, attributeSet);
             constructNormalDrawable(mNormalDrawable);
