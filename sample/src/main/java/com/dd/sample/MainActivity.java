@@ -38,6 +38,9 @@ public class MainActivity extends ListActivity {
             case 4:
                 startStateSampleActivity();
                 break;
+            case 5:
+                startAnimationActivity();
+                break;
         }
     }
 
@@ -59,6 +62,11 @@ public class MainActivity extends ListActivity {
 
     private void startMessageActivity() {
         Intent intent = new Intent(this, MessageActivity.class);
+        startActivity(intent);
+    }
+
+    private void startAnimationActivity() {
+        Intent intent = new Intent(this, AnimationActivity.class);
         startActivity(intent);
     }
 }

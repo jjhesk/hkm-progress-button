@@ -31,4 +31,10 @@
         <attr name="pb_IconRes" format="reference" />
         <attr name="pb_IconPadding" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="AnimationButton">
+        <attr name="pb_start_op" format="enum">
+            <enum name="PLAY" value="0" />
+            <enum name="STOP" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>

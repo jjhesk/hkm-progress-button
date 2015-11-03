@@ -8,6 +8,7 @@ Base on android-process-button this is the advanced version of the android-proce
 - ArrowButton
 - GenerateProcessButton
 - SubmitProcessButton
+- AnimationProcessButton
 
 Android Buttons With Built-in Progress Meters.
 ![](screenshots/sample1_small1.gif)
@@ -43,8 +44,6 @@ There are several attributes you can set:
 | pb_verticalPadding|dimension reference padding between top and bottom on the icon on right side | ArrowButton |
 | pb_topLineThickness| dimension reference for the line thickness on the top | ArrowButton |
 | pb_bottomLineThickness| dimension reference for the line thickness on the bottom | ArrowButton |
-
-
 
 ## Code Sample
 ```java

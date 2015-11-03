@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.dd.sample"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dd.sample">
 
     <application
         android:allowBackup="true"
@@ -34,6 +33,11 @@
 
         <activity
             android:name="com.dd.sample.StateSampleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
+
+        <activity
+            android:name="com.dd.sample.AnimationActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light" />
 
