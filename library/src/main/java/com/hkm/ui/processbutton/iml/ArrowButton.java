@@ -199,10 +199,10 @@ public class ArrowButton extends ProcessButton {
         return d;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+
     protected Drawable getArrow() {
         BitmapDrawable draw = (BitmapDrawable) getDrawable(resArrow).mutate();
-        if (colorArrow != 0) {
+        if (colorArrow != 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             draw.setTint(colorArrow);
         }
         draw.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
