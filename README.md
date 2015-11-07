@@ -1,14 +1,14 @@
 # Rock Button
-Base on android-process-button this is the advanced version of the android-process-button.
-## Description
 [ ![Download](https://api.bintray.com/packages/jjhesk/maven/hkmprocessbuttons/images/download.svg) ](https://bintray.com/jjhesk/maven/hkmprocessbuttons/_latestVersion)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-hkm--progress--button-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1691)[![gitpay](http://fc07.deviantart.net/fs70/f/2012/336/f/9/little_pixel_heart_by_tiny_bear-d5mtwiu.gif)](https://gratipay.com/jjhesk/) [release log](https://github.com/jjhesk/hkm-progress-button/releases)[![Circle CI](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master.svg?style=svg)](https://circleci.com/gh/jjhesk/hkm-progress-button/tree/master)[![Stories in Ready](https://badge.waffle.io/jjhesk/hkm-progress-button.png?label=ready&title=Ready)](https://waffle.io/jjhesk/hkm-progress-button)
 
+Base on android-process-button this is the advanced version of the android-process-button
+
 ##Main Features
-- ActionProcessButton
-- ArrowButton
-- GenerateProcessButton
-- SubmitProcessButton
-- AnimationProcessButton
+- [x] ActionProcessButton
+- [x] ArrowButton
+- [x] GenerateProcessButton
+- [x] SubmitProcessButton
+- [x] AnimationProcessButton
 
 Android Buttons With Built-in Progress Meters.
 ![](screenshots/sample1_small1.gif)
