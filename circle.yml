@@ -27,5 +27,4 @@ test:
     - circle-android wait-for-boot    
     #- bin/android-wait-for-emulator
     #- bin/run-tests test.namespace
-    - (./gradlew clean assembleDebug assembleRelease test):
-        timeout 360
+    - ./gradlew clean assembleDebug assembleRelease test
