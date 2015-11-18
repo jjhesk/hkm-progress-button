@@ -2,20 +2,33 @@ machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
     GRADLE_OPTS: -Xmx512m
-
+    APP_NAME: hkm-progress-button
+    
+general:
+    artifacts:
+        - /home/ubuntu/$APP_NAME/app/build/outputs/apk/
+        
 dependencies:
-  post:
-    - echo y | android update sdk --no-ui --all --filter "platform-tools,build-tools-21.0.2,build-tools-20.0.0,android-21,sys-img-armeabi-v7a-android-21,android-20,sys-img-armeabi-v7a-android-wear-20,android-19,sys-img-armeabi-v7a-android-19,android-18,sys-img-armeabi-v7a-android-18,android-17,sys-img-armeabi-v7a-android-17,android-16,sys-img-armeabi-v7a-android-16,android-15,sys-img-armeabi-v7a-android-15,android-10,extra-android-support,extra-google-google_play_services,extra-google-m2repository,extra-android-m2repository"
-    -  echo n | android create avd -n testing -f -t android-18
+  pre:
+    - echo y | android update sdk --no-ui --all --filter "tools,platform-tools,build-tools-23.0.1,android-23,android-21,sys-img-armeabi-v7a-android-21,android-20,sys-img-armeabi-v7a-android-wear-20,android-19,sys-img-armeabi-v7a-android-19,android-18,sys-img-armeabi-v7a-android-18,android-17,sys-img-armeabi-v7a-android-17,android-16,sys-img-armeabi-v7a-android-16,android-15,sys-img-armeabi-v7a-android-15,android-10,extra-android-support,extra-google-google_play_services,extra-google-m2repository,extra-android-m2repository"
+    - echo n | android create avd -n testing -f -t android-22
+    
+  
+  override:
+    #- ./install-dependencies.sh
+    # - VERSION=`perl -ne '/VERSION_NAME=(.*)/ && print "$1\n"' <  gradle.properties`.jar && cd Branch-SDK && jar -cf $VERSION src/
+    - cd && wget https://services.gradle.org/distributions/gradle-2.4-bin.zip && unzip gradle-2.4-bin.zip
 
 test:
   override:
     - $ANDROID_HOME/tools/emulator -avd testing -no-window -no-boot-anim -no-audio:
         background: true
         parallel: true
-    - ./gradlew assembleDebug
-    - bin/android-wait-for-emulator
-    - bin/run-tests test.namespace
+    - circle-android wait-for-boot    
+    #- bin/android-wait-for-emulator
+    #- bin/run-tests test.namespace
+    - (./gradlew clean assembleDebug assembleRelease test):
+        timeout 360
 
 language: java
 jdk:
