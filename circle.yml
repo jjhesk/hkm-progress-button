@@ -29,11 +29,3 @@ test:
     #- bin/run-tests test.namespace
     - (./gradlew clean assembleDebug assembleRelease test):
         timeout 360
-
-language: java
-jdk:
-  - oraclejdk7
-  - openjdk7
-
-before_install:
- - chmod +x gradlew
