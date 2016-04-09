@@ -1,18 +1,12 @@
 package com.hkm.ui.processbutton.iml;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,15 +18,13 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
 import com.hkm.ui.processbutton.ProcessButton;
 import com.hkm.ui.processbutton.R;
 import com.hkm.ui.processbutton.Util.ProgressBar;
-import com.hkm.ui.processbutton.Util.SAutoBgButtonBackgroundDrawable;
-
-import java.lang.reflect.Type;
 
 /**
  * Created by hesk on 15/10/15.
@@ -184,19 +176,33 @@ public class ArrowButton extends ProcessButton {
         return resizedBitmap;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+
     protected Drawable getIcon() {
-        //  BitmapDrawable draw = (BitmapDrawable) getDrawable(resIcon).mutate();
-        //  Bitmap b = draw.getBitmap();
-        BitmapDrawable draw = (BitmapDrawable) getDrawable(resIcon).mutate();
-        Bitmap scaled = Bitmap.createScaledBitmap(draw.getBitmap(), resIconSize, resIconSize, true);
-        BitmapDrawable d = new BitmapDrawable(getContext().getResources(), scaled);
+        Drawable drawable;
+        /*
+        try {
+            BitmapDrawable draw = (BitmapDrawable) getDrawable(resIcon).mutate();
+            Bitmap scaled = Bitmap.createScaledBitmap(draw.getBitmap(), resIconSize, resIconSize, true);
+             drawable = new BitmapDrawable(getContext().getResources(), scaled);
+            return drawable;
+        } catch (ClassCastException e) {
+            e.fillInStackTrace();
+            Drawable drawable = ContextCompat.getDrawable(getContext(), resIcon);
+            ((BitmapDrawable) drawable).setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+            return drawable;
+        } catch (Resources.NotFoundException e) {
+            e.fillInStackTrace();
+        }*/
+
         // ScaleDrawable sized = new ScaleDrawable(getDrawable(resIcon), Gravity.CENTER, resIconSize, resIconSize);
         //  sized.setBounds(0, 0, resIconSize, resIconSize);
         //BitmapDrawable draw = (BitmapDrawable) sized.getDrawable();
-        d.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        // drawable.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        Drawable draw = ContextCompat.getDrawable(getContext(), resIcon);
+        Bitmap scaled = Bitmap.createScaledBitmap(((BitmapDrawable)draw).getBitmap(), resIconSize, resIconSize, true);
+        drawable = new BitmapDrawable(getContext().getResources(), scaled);
         setPadding(resIconSize + (int) (icon_size_text_padding * 2), 0, 0, 0);
-        return d;
+        return drawable;
     }
 
 

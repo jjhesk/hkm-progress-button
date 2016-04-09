@@ -1,4 +1,4 @@
-package com.dd.sample;
+package com.dd.sample.demo;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dd.sample.R;
 import com.hkm.ui.processbutton.ProcessButton;
 import com.hkm.ui.processbutton.iml.ActionProcessButton;
 import com.hkm.ui.processbutton.iml.GenerateProcessButton;

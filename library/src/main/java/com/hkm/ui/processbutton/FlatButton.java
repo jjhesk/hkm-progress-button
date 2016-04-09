@@ -2,26 +2,20 @@ package com.hkm.ui.processbutton;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StyleableRes;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Button;
-
-import com.hkm.ui.processbutton.Util.SAutoBgButtonBackgroundDrawable;
-
-import java.util.Objects;
 
 
 public class FlatButton extends Button {
@@ -226,7 +220,9 @@ public class FlatButton extends Button {
     }
 
     protected Drawable getDrawable(int id) {
-        return getResources().getDrawable(id);
+        Drawable drawable;
+        drawable = getResources().getDrawable(id);
+        return drawable;
     }
 
     protected float getDimension(int id) {

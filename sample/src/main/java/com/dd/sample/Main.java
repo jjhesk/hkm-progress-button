@@ -7,7 +7,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends ListActivity {
+import com.dd.sample.demo.AnimationActivity;
+import com.dd.sample.demo.MessageActivity;
+import com.dd.sample.demo.SignInActivity;
+import com.dd.sample.demo.StateSampleActivity;
+import com.dd.sample.demo.UploadActivity;
+
+public class Main extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
-package com.dd.sample;
+package com.dd.sample.demo;
 
+import com.dd.sample.R;
 import com.hkm.ui.processbutton.iml.ActionProcessButton;
 import com.dd.sample.utils.ProgressGenerator;
 

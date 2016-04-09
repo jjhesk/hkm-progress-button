@@ -17,12 +17,12 @@
     <string name="Loading_Complete">Loading Complete, button is disabled</string>
 
     <array name="sample_list">
-        <item>Action Button Progress sample</item>
-        <item>Action Button Endless Progress sample</item>
-        <item>Submit Button Progress sample</item>
-        <item>Generate Button Progress sample</item>
-        <item>Button State sample</item>
-        <item>Animation Button Sample</item>
+        <item>Action Button Progress sample - SignInActivity</item>
+        <item>Action Button Endless Progress sample - SignInActivity</item>
+        <item>Submit Button Progress sample - MessageActivity</item>
+        <item>Generate Button Progress sample - UploadActivity</item>
+        <item>Button State sample - StateSampleActivity</item>
+        <item>Animation Button Sample - AnimationActivity</item>
     </array>
 
 </resources>

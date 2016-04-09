@@ -1,4 +1,4 @@
-package com.dd.sample;
+package com.dd.sample.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dd.sample.R;
 import com.dd.sample.utils.ProgressGenerator;
 import com.hkm.ui.processbutton.iml.AnimationButton;
 
