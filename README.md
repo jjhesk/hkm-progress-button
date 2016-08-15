@@ -17,8 +17,8 @@ Android Buttons With Built-in Progress Meters.
 ![](screenshots/sample1_small2.gif)
 ![](screenshots/new_sample.png)
 ![](screenshots/diagram-v-0-0-2.png)
-![](screenshots/demoareyousure.gif)
-![](screenshots/demoareyousure2.gif)
+![](screenshots/demoareyousure.gif =500x)
+![](screenshots/demoareyousure2.gif =500x)
 
 ### Read more with the development guide in Wiki
 - [Home](https://github.com/jjhesk/hkm-progress-button/wiki)
