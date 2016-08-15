@@ -40,6 +40,10 @@
             android:name=".demo.AnimationActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light" />
+        <activity
+            android:name=".demo.AreYouSureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
 
     </application>
 

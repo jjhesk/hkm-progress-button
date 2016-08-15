@@ -37,4 +37,8 @@
             <enum name="STOP" value="1" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="AreYouSureButton">
+        <attr name="pb_time_in_ms_to_have_sure" format="integer" />
+    </declare-styleable>
 </resources>

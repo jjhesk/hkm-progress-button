@@ -10,12 +10,15 @@ Base on android-process-button this is the advanced version of the android-proce
 - [x] GenerateProcessButton
 - [x] SubmitProcessButton
 - [x] AnimationProcessButton
+- [x] AreYouSureButton - keep pressing button to have sure that user really want press the button 
 
 Android Buttons With Built-in Progress Meters.
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
 ![](screenshots/new_sample.png)
 ![](screenshots/diagram-v-0-0-2.png)
+![](screenshots/demoareyousure.gif)
+![](screenshots/demoareyousure2.gif)
 
 ### Read more with the development guide in Wiki
 - [Home](https://github.com/jjhesk/hkm-progress-button/wiki)
@@ -45,6 +48,7 @@ There are several attributes you can set:
 | pb_verticalPadding|dimension reference padding between top and bottom on the icon on right side | ArrowButton |
 | pb_topLineThickness| dimension reference for the line thickness on the top | ArrowButton |
 | pb_bottomLineThickness| dimension reference for the line thickness on the bottom | ArrowButton |
+| pb_time_in_ms_to_have_sure | integer time in ms. Button need be keep pressing for this time to be really sure that used want to press button | AreYouSureButton | 
 
 ## Code Sample
 ```java

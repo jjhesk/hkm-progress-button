@@ -15,6 +15,11 @@
     <string name="Beautiful_Picture">Beautiful Picture</string>
     <string name="Uploading">Uploading</string>
     <string name="Loading_Complete">Loading Complete, button is disabled</string>
+    <string name="open_the_gate">Open the gate</string>
+    <string name="gate_opened">Gate opened</string>
+    <string name="keep_pressing">Keep pressing..</string>
+    <string name="long_arm_alarm">Arm alarm</string>
+    <string name="long_arm_alarmed">Alarm Armed</string>
 
     <array name="sample_list">
         <item>Action Button Progress sample - SignInActivity</item>
@@ -23,6 +28,7 @@
         <item>Generate Button Progress sample - UploadActivity</item>
         <item>Button State sample - StateSampleActivity</item>
         <item>Animation Button Sample - AnimationActivity</item>
+        <item>Are You Sure Button Sample - AreYouSureActivity</item>
     </array>
 
 </resources>
