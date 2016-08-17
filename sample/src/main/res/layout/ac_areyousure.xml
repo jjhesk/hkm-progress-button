@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hkm.ui.processbutton.iml.AreYouSureButton
+        android:id="@+id/gateButton1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/open_the_gate"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        custom:pb_colorComplete="@color/green_complete"
+        custom:pb_colorNormal="@color/blue_normal"
+        custom:pb_colorPressed="@color/blue_pressed"
+        custom:pb_colorProgress="@color/purple_progress"
+        custom:pb_textComplete="@string/gate_opened"
+        custom:pb_textProgress="@string/keep_pressing" />
+
+
+    <com.hkm.ui.processbutton.iml.AreYouSureButton
+        android:id="@+id/alarmButton1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/long_arm_alarm"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        custom:pb_time_in_ms_to_have_sure="@integer/long_time"
+        custom:pb_colorComplete="@color/green_complete"
+        custom:pb_colorNormal="@color/blue_normal"
+        custom:pb_colorPressed="@color/blue_pressed"
+        custom:pb_colorProgress="@color/purple_progress"
+        custom:pb_textComplete="@string/long_arm_alarmed"
+        custom:pb_textProgress="@string/keep_pressing" />
+
+
+</LinearLayout>

@@ -1,13 +1,16 @@
 package com.dd.sample;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.dd.sample.demo.AnimationActivity;
+import com.dd.sample.demo.AreYouSureActivity;
 import com.dd.sample.demo.MessageActivity;
 import com.dd.sample.demo.SignInActivity;
 import com.dd.sample.demo.StateSampleActivity;
@@ -20,7 +23,6 @@ public class Main extends ListActivity {
         super.onCreate(savedInstanceState);
 
         String[] items = getResources().getStringArray(R.array.sample_list);
-
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         setListAdapter(adapter);
@@ -47,7 +49,15 @@ public class Main extends ListActivity {
             case 5:
                 startAnimationActivity();
                 break;
+            case 6:
+                startAreYouSureActivity();
+                break;
         }
+    }
+
+    private void startAreYouSureActivity() {
+        Intent intent = new Intent(this, AreYouSureActivity.class);
+        startActivity(intent);
     }
 
     private void startStateSampleActivity() {
