@@ -21,7 +21,7 @@ import static com.hkm.ui.processbutton.FlatButton.BUTTON_BOTTOM_PAD;
  */
 public class AreYouSureButton extends RelativeLayout implements View.OnTouchListener {
 
-    public static final int PERCENT_TO_FINISH_MARK_AS_FINISHED = 10;
+    public static final int PERCENT_TO_FINISH_MARK_AS_FINISHED = HOW_MANY_TIMES_REFRESH_STATUS();
     public static final int ONE_SEC = 1000; //ms
     private SubmitProcessButton submitProcessButton;
     private CountDownTimer progress;
@@ -103,7 +103,11 @@ public class AreYouSureButton extends RelativeLayout implements View.OnTouchList
     }
 
     private void calculateRefreshTime() {
-        howOftenRefreshStatus = (int)((howLongPressToBeSure*1.0d)/10.0d);
+        howOftenRefreshStatus = (int)((howLongPressToBeSure*1.0d)/ HOW_MANY_TIMES_REFRESH_STATUS());
+    }
+
+    private static int HOW_MANY_TIMES_REFRESH_STATUS() {
+        return 10;
     }
 
     @Override
