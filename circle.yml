@@ -27,4 +27,5 @@ test:
     - circle-android wait-for-boot    
     #- bin/android-wait-for-emulator
     #- bin/run-tests test.namespace
-    - chmod +x gradlew clean assembleDebug assembleRelease test
+    - chmod +x gradlew
+    - ./gradlew clean assembleDebug assembleRelease test
