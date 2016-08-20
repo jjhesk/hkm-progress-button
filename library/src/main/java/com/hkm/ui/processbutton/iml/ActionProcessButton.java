@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 
 import com.hkm.ui.processbutton.ProcessButton;
@@ -119,6 +120,22 @@ public class ActionProcessButton extends ProcessButton {
         double indicatorHeight = getDimension(R.dimen.layer_padding);
         int bottom = (int) (getMeasuredHeight() - indicatorHeight);
         mProgressBar.setBounds(0, bottom, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    public void setColor1(@ColorInt int color1) {
+        this.mColor1 = color1;
+    }
+
+    public void setColor2(@ColorInt int color2) {
+        this.mColor2 = color2;
+    }
+
+    public void setColor3(@ColorInt int color3) {
+        this.mColor3 = color3;
+    }
+
+    public void setColor4(@ColorInt int color4) {
+        this.mColor4 = color4;
     }
 
 }
