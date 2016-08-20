@@ -37,4 +37,10 @@
             <enum name="STOP" value="1" />
         </attr>
     </declare-styleable>
+    <declare-styleable name="ActionProcessButton">
+        <attr name="pb_colorProgressEndless1" format="color" />
+        <attr name="pb_colorProgressEndless2" format="color" />
+        <attr name="pb_colorProgressEndless3" format="color" />
+        <attr name="pb_colorProgressEndless4" format="color" />
+    </declare-styleable>
 </resources>
