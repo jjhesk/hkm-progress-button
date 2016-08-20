@@ -2,16 +2,10 @@ package com.hkm.ui.processbutton.iml;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.support.v4.view.ViewCompat;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
 
 import com.hkm.ui.processbutton.ProcessButton;
 import com.hkm.ui.processbutton.R;
@@ -41,11 +35,24 @@ public class ActionProcessButton extends ProcessButton {
     public ActionProcessButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
+        initColorsFromAttrs(context, attrs);
     }
 
     public ActionProcessButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context);
+        initColorsFromAttrs(context, attrs);
+    }
+
+    private void initColorsFromAttrs(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ActionProcessButton);
+
+        mColor1 = typedArray.getColor(R.styleable.ActionProcessButton_pb_colorProgressEndless1, mColor1);
+        mColor2 = typedArray.getColor(R.styleable.ActionProcessButton_pb_colorProgressEndless2, mColor2);
+        mColor3 = typedArray.getColor(R.styleable.ActionProcessButton_pb_colorProgressEndless3, mColor3);
+        mColor4 = typedArray.getColor(R.styleable.ActionProcessButton_pb_colorProgressEndless4, mColor4);
+
+        typedArray.recycle();
     }
 
     private void init(Context context) {
@@ -113,6 +120,22 @@ public class ActionProcessButton extends ProcessButton {
         double indicatorHeight = getDimension(R.dimen.layer_padding);
         int bottom = (int) (getMeasuredHeight() - indicatorHeight);
         mProgressBar.setBounds(0, bottom, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    public void setColor1(@ColorInt int color1) {
+        this.mColor1 = color1;
+    }
+
+    public void setColor2(@ColorInt int color2) {
+        this.mColor2 = color2;
+    }
+
+    public void setColor3(@ColorInt int color3) {
+        this.mColor3 = color3;
+    }
+
+    public void setColor4(@ColorInt int color4) {
+        this.mColor4 = color4;
     }
 
 }
